@@ -11,6 +11,16 @@ if not namespace.ARPG then
 	namespace.ARPG = ARPG
 end
 local ARPG = namespace.ARPG or ARPG
+--setup default config
+local DefaultConfig = {
+	FeastRepairAlert = true,
+	InterruptAnnounce = true,
+	InterruptWatch = true,
+	QuickLoot = true,
+	ScreenSaver = true,
+	SellGrey = true,
+}
+ARPG_CONFIG = ARPG_CONFIG or DefaultConfig
 
 --event functions
 local function ARPG_Events_ADDON_FULLY_LOADED()

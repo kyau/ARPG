@@ -234,9 +234,11 @@ GameTooltipStatusBar.bg:SetColorTexture(1,1,1)
 GameTooltipStatusBar.bg:SetVertexColor(0,0,0,0.5)
 
 local function OnUIDropDownMenuClick(level, value, dropDownFrame, anchorName, xOffset, yOffset, menuList, button, autoHideDelay)
-	_G["DropDownList"..level.."MenuBackdrop"]:SetBackdrop(cfg.backdrop)
-	_G["DropDownList"..level.."MenuBackdrop"]:SetBackdropColor(unpack(cfg.backdrop.bgColor))
-	_G["DropDownList"..level.."MenuBackdrop"]:SetBackdropBorderColor(unpack(cfg.backdrop.borderColor))
+	if level then
+		_G["DropDownList"..level.."MenuBackdrop"]:SetBackdrop(cfg.backdrop)
+		_G["DropDownList"..level.."MenuBackdrop"]:SetBackdropColor(unpack(cfg.backdrop.bgColor))
+		_G["DropDownList"..level.."MenuBackdrop"]:SetBackdropBorderColor(unpack(cfg.backdrop.borderColor))
+	end
 end
 
 local function ChatMenuOnClick()

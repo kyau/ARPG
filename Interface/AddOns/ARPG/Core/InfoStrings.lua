@@ -139,6 +139,8 @@ function GetPlayerMapPos(MapID)
 		MapRects[MapID] = R
 	end
 	P.x, P.y = UnitPosition('Player')
+	--cannot find coords return 0,0
+	if P.x == nil or P.y == nil then return 0,0 end
 	P:Subtract(R[1])
 	return (1/R[2].y)*P.y, (1/R[2].x)*P.x
 end

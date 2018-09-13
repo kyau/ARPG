@@ -4,6 +4,16 @@
 local addon, namespace = ...
 kLib = {}
 local SpellFlyout = SpellFlyout
+--create message frame
+local ARPG_MessageFrame = CreateFrame("Frame", "ARPG_MessageFrame", UIParent)
+ARPG_MessageFrame:SetWidth(1000)
+ARPG_MessageFrame:SetHeight(40)
+ARPG_MessageFrame:SetFrameStrata("BACKGROUND")
+ARPG_MessageFrame:SetPoint("TOP", 0, -96)
+ARPG_MessageFrame:Show()
+local ARPG_MessageFrameText = ARPG_MessageFrame:CreateFontString(ARPG_MessageFrame:GetName() .. "Text", "OVERLAY")
+ARPG_MessageFrameText:SetFont(STANDARD_TEXT_FONT, 36, "OUTLINE")
+ARPG_MessageFrameText:SetPoint("TOP", 0, 0)
 
 --copyTable
 local function copyTable(orig)
@@ -21,6 +31,11 @@ local function copyTable(orig)
 	return copy
 end
 kLib.CopyTable = copyTable
+
+--kLib:Print
+function kLib:Print(msg)
+	vbm_print("|cffff69b4<ARPG>|r "..msg);
+end
 
 --kLib:RegisterCallback
 function kLib:RegisterCallback(event, callback, ...)
@@ -162,11 +177,9 @@ local function OnDragStart(self, button)
 		end
 	end
 end
-
 local function OnDragStop(self)
 	self:GetParent():StopMovingOrSizing()
 end
-
 local function OnEnter(self)
 	GameTooltip:SetOwner(self, "ANCHOR_TOP")
 	GameTooltip:AddLine(self:GetParent():GetName(), 0, 1, 0.5, 1, 1, 1)
@@ -176,18 +189,15 @@ local function OnEnter(self)
 	end
 	GameTooltip:Show()
 end
-
 local function OnLeave(self)
 	GameTooltip:Hide()
 end
-
 local function OnShow(self)
 	local frame = self:GetParent()
 	if frame.fader then
 		kLib:StartFadeIn(frame)
 	end
 end
-
 local function OnHide(self)
 	local frame = self:GetParent()
 	if frame.fader then
@@ -238,18 +248,14 @@ function kLib:CreateDragResizeFrame(frame, frames, inset, clamp)
 	frame.__resizable = true
 	frame.dragFrame:RegisterForDrag("LeftButton","RightButton")
 end
-
---Frame Fader
 local function FaderOnFinished(self)
 	--print("FaderOnFinished",self.__owner:GetName(),self.finAlpha)
 	self.__owner:SetAlpha(self.finAlpha)
 end
-
 local function FaderOnUpdate(self)
 	--print("FaderOnUpdate",self.__owner:GetName(),self.__animFrame:GetAlpha())
 	self.__owner:SetAlpha(self.__animFrame:GetAlpha())
 end
-
 local function CreateFaderAnimation(frame)
 	if frame.fader then return end
 	local animFrame = CreateFrame("Frame",nil,frame)
@@ -264,6 +270,7 @@ local function CreateFaderAnimation(frame)
 	frame.fader:HookScript("OnUpdate", FaderOnUpdate)
 end
 
+--kLib:StartFadeIn
 function kLib:StartFadeIn(frame)
 	if frame.fader.direction == "in" then return end
 	frame.fader:Pause()
@@ -278,6 +285,7 @@ function kLib:StartFadeIn(frame)
 	frame.fader:Play()
 end
 
+--kLib:StartFadeOut
 function kLib:StartFadeOut(frame)
 	if frame.fader.direction == "out" then return end
 	frame.fader:Pause()
@@ -291,7 +299,6 @@ function kLib:StartFadeOut(frame)
 	frame.fader.direction = "out"
 	frame.fader:Play()
 end
-
 local function IsMouseOverFrame(frame)
 	if MouseIsOver(frame) then return true end
 	if not SpellFlyout:IsShown() then return false end
@@ -299,7 +306,6 @@ local function IsMouseOverFrame(frame)
 	if SpellFlyout.__faderParent == frame and MouseIsOver(SpellFlyout) then return true end
 	return false
 end
-
 local function FrameHandler(frame)
 	if IsMouseOverFrame(frame) then
 		kLib:StartFadeIn(frame)
@@ -307,12 +313,10 @@ local function FrameHandler(frame)
 		kLib:StartFadeOut(frame)
 	end
 end
-
 local function OffFrameHandler(self)
 	if not self.__faderParent then return end
 	FrameHandler(self.__faderParent)
 end
-
 local function SpellFlyoutOnShow(self)
 	local frame = self:GetParent():GetParent():GetParent()
 	if not frame.fader then return end
@@ -336,6 +340,7 @@ local function SpellFlyoutOnShow(self)
 end
 SpellFlyout:HookScript("OnShow", SpellFlyoutOnShow)
 
+--kLib:CreateFrameFader
 function kLib:CreateFrameFader(frame, faderConfig)
 	if frame.faderConfig then return end
 	frame.faderConfig = faderConfig
@@ -346,6 +351,7 @@ function kLib:CreateFrameFader(frame, faderConfig)
 	FrameHandler(frame)
 end
 
+--kLib:CreateButtonFrameFader
 function kLib:CreateButtonFrameFader(frame, buttonList, faderConfig)
 	kLib:CreateFrameFader(frame, faderConfig)
 	for i, button in next, buttonList do
@@ -394,4 +400,57 @@ end
 function kLib:CreateSlashCmd(shortcut, func)
 	SlashCmdList[shortcut] = func
 	_G["SLASH_"..shortcut.."1"] = "/"..shortcut
+end
+
+--kLib:MessageFrameWarn
+local function MessageFrameTimerEnd()
+	ARPG_MessageFrameText:SetText("")
+end
+local function isint(n)
+	return n==math.floor(n)
+end
+function kLib:MessageFrameWarn(msg, time)
+	ARPG_MessageFrameText:SetText(msg)
+	if isint(time) then
+		C_Timer.After(time, function()
+			ARPG_MessageFrameText:SetText("")
+		end)
+	end
+end
+kLib:CreateSlashCmd("test", function()
+	kLib:MessageFrameWarn("Testing", 5)
+end)
+
+--kLib:Band
+function kLib:Band(mask, ...)
+	args = {...}
+	local i
+	for i = 1, #args do
+		if bit.band(mask, args[i]) == 0 then
+			return false
+		end
+	end
+	return true
+end
+
+--kLib:Bor
+function kLib:Bor(b1, ...)
+	args = {...}
+	local i
+	for i = 1, #args do
+		b1 = bit.bor(b1, args[i])
+	end
+	return b1
+end
+
+-- kLib:FlagsColor
+function kLib:FlagsColor(flags)
+	if kLib:Band(flags, COMBATLOG_OBJECT_REACTION_HOSTILE) then
+		return "|cFFFF0000"
+	elseif kLib:Band(flags,COMBATLOG_OBJECT_REACTION_NEUTRAL) then
+		return "|cFFFFFF00"
+	elseif kLib:Band(flags,COMBATLOG_OBJECT_REACTION_FRIENDLY) then
+		return "|cFF00FF00"
+	end
+	return ""
 end

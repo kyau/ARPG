@@ -9,6 +9,7 @@
 <Script file="Core/BuffFrame.lua"/>
 <Script file="Core/Chat.lua"/>
 <Script file="Core/ChatTabs.lua"/>
+<Script file="Core/CombatLog.lua"/>
 <Script file="Core/Debug.lua"/>
 <Script file="Core/InfoStrings.lua"/>
 <Script file="Core/Minimap.lua"/>

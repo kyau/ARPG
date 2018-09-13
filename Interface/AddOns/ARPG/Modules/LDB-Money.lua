@@ -220,8 +220,8 @@ function f:Init(event, addonName)
 	tip = GameTooltip
 	configMenu.displayMode = "MENU"
 
-	AraBrokerMoneyDB = AraBrokerMoneyDB or defaultConfig
-	config = AraBrokerMoneyDB
+	ARPG_LDB_MONEY = ARPG_LDB_MONEY or defaultConfig
+	config = ARPG_LDB_MONEY
 	for k, v in next, defaultConfig do if config[k]==nil then config[k] = v end end
 	realm = config[GetRealmName()]
 	for k, v in next, defaultRealmConfig do if realm[k]==nil then realm[k] = v end end

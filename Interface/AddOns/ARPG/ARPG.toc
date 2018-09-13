@@ -12,6 +12,7 @@
 ## Dependencies: !BugGrabber, BugSack, AdiBags, DejaCharacterStats, Dominos
 ## LoadOnDemand: 0
 ## DefaultState: enabled
+## SavedVariables: ARPG_CONFIG, ARPG_LDB_MONEY
 ## Author: Kyau@Tichondrius
 ## X-Website: https://kyaulabs.com/
 ## Version: v1.1.3
