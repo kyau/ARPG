@@ -41,7 +41,7 @@ While not required, the following addons are also heavily recommended to complet
 * [SimulationCraft](https://wow.curseforge.com/projects/simulationcraft)
 
 ## Attribution / Credits
-Many AddOns have helped me in the development of the ARPG UI. Many AddOns have also been merged/integrated with ARPG. I have tried to give credit to for all the borrowed code here. If you find something that is not in the list that needs to be, please let me know!
+Many AddOns have helped me in the development of the ARPG UI. Many AddOns have also been merged/integrated with ARPG. I have tried to give credit for all the borrowed/integrated code here. If you find something that is not in the list that needs to be, please let me know!
 * Aurora (skinning)
 * AutoLootPlus (fast loot code)
 * AzeriteTooltips (integrated into my tooltips)

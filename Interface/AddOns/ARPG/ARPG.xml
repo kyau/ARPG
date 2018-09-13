@@ -1,0 +1,27 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+<Script file="Core/Core.lua"/>
+<Script file="Core/SharedMedia.lua"/>
+<Script file="Core/Art.lua"/>
+<Script file="Core/ActionButtonStyle.lua"/>
+<Script file="Core/BuffFrame.lua"/>
+<Script file="Core/Chat.lua"/>
+<Script file="Core/ChatTabs.lua"/>
+<Script file="Core/Debug.lua"/>
+<Script file="Core/InfoStrings.lua"/>
+<Script file="Core/Minimap.lua"/>
+<Script file="Core/RaidManager.lua"/>
+<Script file="Core/Tooltip.lua"/>
+
+<Script file="Modules/Align.lua"/>
+<Script file="Modules/Screensaver.lua"/>
+<Script file="Modules/SellGrey.lua"/>
+<Script file="Modules/Vignette.lua"/>
+
+<Script file="Modules/LDB-Azerite.lua"/>
+<Script file="Modules/LDB-Money.lua"/>
+<Script file="Modules/LDB-Social.lua"/>
+
+</Ui>

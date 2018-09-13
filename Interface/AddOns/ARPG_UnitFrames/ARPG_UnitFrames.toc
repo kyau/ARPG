@@ -1,0 +1,54 @@
+## Interface: 80000
+## X-Min-Interface: 80000
+## Title: |cffff69b4ARPG|cffefefef UI:|r UnitFrames
+## Notes: ARPG layout for oUF|n|cff696969Version 1.2.1|r
+## Dependencies: ARPG
+## SavedVariables: ARPG_UNITFRAMES_DB_GLOB
+## SavedVariablesPerCharacter: ARPG_UNITFRAMES_DB_CHAR
+## LoadOnDemand: 0
+## DefaultState: enabled
+## Author: Kyau@Tichondrius
+## X-Website: https://kyaulabs.com/
+## Version: v1.2.1
+## X-oUF: ARPG: oUF
+
+#@do-not-package@
+embeds\oUF\oUF.xml
+#@end-do-not-package@
+
+modules\oUF_AuraWatch.lua
+modules\oUF_BurningEmbers.lua
+modules\oUF_ComboPoints.lua
+modules\oUF_DebuffHighlight.lua
+modules\oUF_DemonicFury.lua
+modules\oUF_Experience.lua
+modules\oUF_Harmony.lua
+modules\oUF_HolyPower.lua
+modules\oUF_Reputation.lua
+modules\oUF_RuneOrbs.lua
+modules\oUF_ShadowOrbs.lua
+modules\oUF_Smooth.lua
+modules\oUF_SoulShards.lua
+modules\oUF_TotalAbsorb.lua
+
+config.lua
+charspecific.lua
+
+core\db.lua
+core\panel.lua
+core\slashcmd.lua
+core\lib.lua
+core\tags.lua
+core\units.lua
+core\bars.lua
+
+units\player.lua
+units\target.lua
+units\targettarget.lua
+units\pet.lua
+units\focus.lua
+units\pettarget.lua
+units\focustarget.lua
+units\party.lua
+units\raid.lua
+units\boss.lua

@@ -1,0 +1,5 @@
+FRIZQT__.ttf (the main UI font - NPC names, player names, spell names, item names, buffs, quest log text, combat text, button text)
+ARIALN.ttf (chat font, info text, small text)
+skurri.ttf (default unit frame combat text)
+MORPHEUS.ttf (mail text, quest log header text)
+FRIENDS.ttf (friends list text)
