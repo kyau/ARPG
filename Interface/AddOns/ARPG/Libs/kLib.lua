@@ -34,7 +34,12 @@ kLib.CopyTable = copyTable
 
 --kLib:Print
 function kLib:Print(msg)
-	vbm_print("|cffff69b4<ARPG>|r "..msg);
+	print("|cffff69b4<ARPG>|r " .. msg)
+end
+
+--kLib:PrintError
+function kLib:PrintError(msg)
+	print("|cffaa0000<ERROR>|r " .. msg)
 end
 
 --kLib:RegisterCallback

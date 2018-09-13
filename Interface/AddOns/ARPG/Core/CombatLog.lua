@@ -8,7 +8,9 @@ local ARPG = namespace.ARPG or ARPG
 local config = ARPG_CONFIG
 --local stringfind = _G.string.find
 
-local function ARPG_SSDI_Alert(timestamp, combatEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24, arg25)
+--local function ARPG_SSDI_Alert(timestamp, combatEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24, arg25)
+local function ARPG_SSDI_Alert()
+	local timestamp, combatEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool = CombatLogGetCurrentEventInfo()
 	--anyone gains a buff
 	if((combatEvent == "SPELL_AURA_APPLIED" or combatEvent == "SPELL_AURA_REFRESH") and destName) then
 		--check for di or ss
@@ -70,7 +72,7 @@ end
 
 --local function ARPG_InterruptWatch(timestamp, combatEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23)
 local function ARPG_InterruptWatch()
-	local timestamp, combatEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool = CombatLogGetCurrentEventInfo()
+	local timestamp, combatEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool, extraSpellId, extraSpellName, extraSchool = CombatLogGetCurrentEventInfo()
 	if(combatEvent == "SPELL_INTERRUPT" and destName) then
 		if not sourceName then
 			sourceName = "Unknown";
@@ -102,7 +104,7 @@ local function ARPG_InterruptWatch()
 		
 		--local extraSpellName = arg16;
 		kLib:Print("|cff8888cc["..CombatLog_String_GetIcon(sourceFlags, "source").."|cffb4b4b4"..sourceName.."|cff8888cc] |cffffffff"..spellName..
-			kLib:FlagsColor(sourceFlags).." INTERRUPT |cff8888cc["..CombatLog_String_GetIcon(destFlags, "dest").."|cffb4b4b4"..destName.."|cff8888cc] |cffffffff"..arg16);
+			kLib:FlagsColor(sourceFlags).." INTERRUPT |cff8888cc["..CombatLog_String_GetIcon(destFlags, "dest").."|cffb4b4b4"..destName.."|cff8888cc] |cffffffff"..extraSpellName);
 	end	
 end
 

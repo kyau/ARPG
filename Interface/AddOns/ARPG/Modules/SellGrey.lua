@@ -32,7 +32,7 @@ end
 
 function SellGrey()
 	if(not MerchantFrame:IsShown()) then
-		print("|cffff0000Error: Visit a vendor first|r")
+		kLib:PrintError("Visit a vendor first")
 		return
 	end
 	local bag,slot,item
@@ -57,7 +57,7 @@ function SellGrey()
 		if(nr_selled==1) then
 			text = "item"
 		end
-		print("|cffff69b4ARPG-UI:|r Auto Sold |cFF0080ff"..nr_selled.."|r|cFFFFFFFF "..text.." for |r"..FormatMoney(price_selled))
+		kLib:Print("Auto Sold |cFF0080ff"..nr_selled.."|r|cFFFFFFFF "..text.." for |r"..FormatMoney(price_selled))
 	end
 end
 
