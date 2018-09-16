@@ -1,22 +1,20 @@
 
-  --get the addon namespace
-  local addon, ns = ...
+--get the addon namespace
+local addon, ns = ...
 
-  --object container
-  local unit = CreateFrame("Frame")
-  unit:Hide()
+--object container
+local unit = CreateFrame("Frame")
+unit:Hide()
 
-  ---------------------------------------------
-  -- UNITS
-  ---------------------------------------------
+---------------------------------------------
+-- UNITS
+---------------------------------------------
 
-  --just in case needed
+--just in case needed
 
-  ---------------------------------------------
-  -- HANDOVER
-  ---------------------------------------------
+---------------------------------------------
+-- HANDOVER
+---------------------------------------------
 
-  --object container to addon namespace
-  ns.unit = unit
-
-  
+--object container to addon namespace
+ns.unit = unit

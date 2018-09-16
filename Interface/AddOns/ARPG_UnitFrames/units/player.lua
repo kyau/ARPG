@@ -537,15 +537,15 @@
     end
 
     --warlock bars
-    if cfg.playerclass == "WARLOCK" and self.cfg.demonicfury.show then
-      bars.createDemonicFuryPowerBar(self)
-    end
+    --if cfg.playerclass == "WARLOCK" and self.cfg.demonicfury.show then
+      --bars.createDemonicFuryPowerBar(self)
+    --end
     if cfg.playerclass == "WARLOCK" and self.cfg.soulshards.show then
       bars.createSoulShardPowerBar(self)
     end
-    if cfg.playerclass == "WARLOCK" and self.cfg.burningembers.show then
-      bars.createBurningEmberPowerBar(self)
-    end
+    --if cfg.playerclass == "WARLOCK" and self.cfg.burningembers.show then
+      --bars.createBurningEmberPowerBar(self)
+    --end
 
     --holypower
     if cfg.playerclass == "PALADIN" and self.cfg.holypower.show then
@@ -563,9 +563,9 @@
     end
 
     --eclipsebar
-    if cfg.playerclass == "DRUID" and self.cfg.eclipse.show then
-      bars.createEclipseBar(self)
-    end
+    --if cfg.playerclass == "DRUID" and self.cfg.eclipse.show then
+      --bars.createEclipseBar(self)
+    --end
 
     --runes
     if cfg.playerclass == "DEATHKNIGHT" and self.cfg.runes.show then
@@ -576,6 +576,11 @@
     --combobar
     if self.cfg.combobar.show then
       bars.createComboBar(self)
+    end
+
+    --arcane charges
+    if cfg.playerclass == "MAGE" and self.cfg.arcanecharge.show then
+      bars.createArcaneChargeBar(self)
     end
 
     --create portrait

@@ -98,10 +98,24 @@ local function ARPG_ShowUIPanel(frame, force)
 		end
 		MAINMENU_BUTTON = "GAME MENU"
 	end
+
+	if CharacterFrame:IsShown() then
+		_G.CharacterFrame:ClearAllPoints()
+		_G.CharacterFrame:SetPoint("TOPLEFT", "ARPG_CharacterFrame", "TOPLEFT", 157, -388)
+		_G.CharacterFrame.TitleText:ClearAllPoints()
+		_G.CharacterFrame.TitleText:SetPoint("BOTTOM", _G.CharacterFrameInset, "TOP", 0, 73)
+	end
 end
 local function ARPG_HideUIPanel(frame, skipSetPoint)
 	if frame == GameMenuFrame then
 		ARPG_GameMenu:Hide()
+	end
+
+	if CharacterFrame:IsShown() then
+		_G.CharacterFrame:ClearAllPoints()
+		_G.CharacterFrame:SetPoint("TOPLEFT", "ARPG_CharacterFrame", "TOPLEFT", 157, -388)
+		_G.CharacterFrame.TitleText:ClearAllPoints()
+		_G.CharacterFrame.TitleText:SetPoint("BOTTOM", _G.CharacterFrameInset, "TOP", 0, 73)
 	end
 end
 hooksecurefunc("ShowUIPanel", ARPG_ShowUIPanel)
@@ -466,6 +480,18 @@ local function ARPG_CloseAllWindows(ignoreCenter)
 	ARPG_CharacterFrame:Hide()
 end
 hooksecurefunc("CloseAllWindows", ARPG_CloseAllWindows)
+--hooksecurefunc(FramePositionDelegate, "SetAttribute", ARPG_FramePositionDelegateSetAttribute)
+
+--tradeskills
+local function ARPG_TradeSkillFrame()
+	_G.TradeSkillFrame:ClearAllPoints()
+	_G.TradeSkillFrame:SetPoint("TOP", "UIParent", "TOP", 0, -100)
+end
+--_G.TradeSkillFrame:HookScript("OnShow", ARPG_TradeSkillFrame)
+kLib:RegisterCallback("TRADE_SKILL_SHOW", ARPG_TradeSkillFrame)
+--hooksecurefunc("FramePositionDelegate_OnAttributeChanged", ARPG_TradeSkillFrame)
+
+--kLib:RegisterCallback("")
 
 --functions
 local function ARPG_ObjectiveTracker_AddBlock(block, forceAdd)

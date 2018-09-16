@@ -1,7 +1,7 @@
 ## Interface: 80000
 ## X-Min-Interface: 80000
 ## Title: |cffff69b4ARPG|cffefefef UI:|r UnitFrames
-## Notes: ARPG layout for oUF|n|cff696969Version 1.2.1|r
+## Notes: ARPG layout for oUF|n|cff696969Version 1.0.2|r
 ## Dependencies: ARPG
 ## SavedVariables: ARPG_UNITFRAMES_DB_GLOB
 ## SavedVariablesPerCharacter: ARPG_UNITFRAMES_DB_CHAR
@@ -9,18 +9,17 @@
 ## DefaultState: enabled
 ## Author: Kyau@Tichondrius
 ## X-Website: https://kyaulabs.com/
-## Version: v1.2.1
+## Version: v1.0.2
 ## X-oUF: ARPG: oUF
 
 #@do-not-package@
 embeds\oUF\oUF.xml
 #@end-do-not-package@
 
+modules\oUF_ArcaneCharges.lua
 modules\oUF_AuraWatch.lua
-modules\oUF_BurningEmbers.lua
 modules\oUF_ComboPoints.lua
 modules\oUF_DebuffHighlight.lua
-modules\oUF_DemonicFury.lua
 modules\oUF_Experience.lua
 modules\oUF_Harmony.lua
 modules\oUF_HolyPower.lua

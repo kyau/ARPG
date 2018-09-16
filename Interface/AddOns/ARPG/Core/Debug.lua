@@ -19,7 +19,141 @@ end
 
 
 local DevTools_DumpValue
+DEVTOOLS_MAX_ENTRY_CUTOFF = 30  --Maximum table entries shown
+DEVTOOLS_LONG_STRING_CUTOFF = 200 --Maximum string size shown
+DEVTOOLS_DEPTH_CUTOFF = 10 --Maximum table depth
+DEVTOOLS_USE_TABLE_CACHE = true --Look up table names
+DEVTOOLS_USE_FUNCTION_CACHE = true --Look up function names
+DEVTOOLS_USE_USERDATA_CACHE = true --Look up userdata names
+DEVTOOLS_INDENT='  ' --Indentation string
+local DEVTOOLS_TYPE_COLOR="|cff88ff88"
+local DEVTOOLS_TABLEREF_COLOR="|cffffcc00"
+local DEVTOOLS_CUTOFF_COLOR="|cffff0000"
+local DEVTOOLS_TABLEKEY_COLOR="|cff88ccff"
+local FORMATS = {}
+-- prefix type suffix
+FORMATS["opaqueTypeVal"] = "%s" .. DEVTOOLS_TYPE_COLOR .. "<%s>|r%s"
+-- prefix type name suffix
+FORMATS["opaqueTypeValName"] = "%s" .. DEVTOOLS_TYPE_COLOR .. "<%s %s>|r%s"
+-- type
+FORMATS["opaqueTypeKey"] = "<%s>"
+-- type name
+FORMATS["opaqueTypeKeyName"] = "<%s %s>"
+-- value
+FORMATS["bracketTableKey"] = "[%s]"
+-- prefix value
+FORMATS["tableKeyAssignPrefix"] = DEVTOOLS_TABLEKEY_COLOR .. "%s%s|r="
+-- prefix cutoff
+FORMATS["tableEntriesSkipped"] = "%s" .. DEVTOOLS_CUTOFF_COLOR .. "<skipped %s>|r"
+-- prefix suffix
+FORMATS["tableTooDeep"] = "%s" .. DEVTOOLS_CUTOFF_COLOR .. "<table (too deep)>|r%s"
+-- prefix value suffix
+FORMATS["simpleValue"] = "%s%s%s"
+-- prefix tablename suffix
+FORMATS["tableReference"] = "%s" .. DEVTOOLS_TABLEREF_COLOR .. "%s|r%s"
 
+local function prepSimple(val, context)
+    local valType = type(val)
+    if (valType == "nil")  then
+        return "nil"
+    elseif (valType == "number") then
+        return val
+    elseif (valType == "boolean") then
+        if (val) then
+            return "true"
+        else
+            return "false"
+        end
+    elseif (valType == "string") then
+        local l = string_len(val)
+        if ((l > DEVTOOLS_LONG_STRING_CUTOFF) and
+            (DEVTOOLS_LONG_STRING_CUTOFF > 0)) then
+            local more = l - DEVTOOLS_LONG_STRING_CUTOFF
+            val = string_sub(val, 1, DEVTOOLS_LONG_STRING_CUTOFF)
+            return string_gsub(string_format("%q...+%s",val,more),"[|]", "||")
+        else
+            return string_gsub(string_format("%q",val),"[|]", "||")
+        end
+    elseif (valType == "function") then
+        local fName = context:GetFunctionName(val)
+        if (fName) then
+            return string_format(FORMATS.opaqueTypeKeyName, valType, fName)
+        else
+            return string_format(FORMATS.opaqueTypeKey, valType)
+        end
+        return string_format(FORMATS.opaqueTypeKey, valType)
+    elseif (valType == "userdata") then
+        local uName = context:GetUserdataName(val)
+        if (uName) then
+            return string_format(FORMATS.opaqueTypeKeyName, valType, uName)
+        else
+            return string_format(FORMATS.opaqueTypeKey, valType)
+        end
+    elseif (valType == 'table') then
+        local tName = context:GetTableName(val)
+        if (tName) then
+            return string_format(FORMATS.opaqueTypeKeyName, valType, tName)
+        else
+            return string_format(FORMATS.opaqueTypeKey, valType)
+        end
+    end
+    error("Bad type '" .. valType .. "' to prepSimple")
+end
+
+local function prepSimpleKey(val, context)
+    local valType = type(val)
+    if (valType == "string") then
+        local l = string_len(val)
+        if ((l <= DEVTOOLS_LONG_STRING_CUTOFF) or
+            (DEVTOOLS_LONG_STRING_CUTOFF <= 0)) then
+            if (string_match(val, "^[a-zA-Z_][a-zA-Z0-9_]*$")) then
+                return val
+            end
+        end
+    end
+    return string_format(FORMATS.bracketTableKey, prepSimple(val, context));
+end
+local function DevTools_Cache_Nil(self, value, newName)
+	return nil;
+end
+local function DevTools_Cache_Function(self, value, newName)
+	if (not self.fCache) then
+		self.fCache = DevTools_InitFunctionCache(self)
+	end
+	local name = self.fCache[value]
+	if ((not name) and newName) then
+		self.fCache[value] = newName
+	end
+	return name
+end
+
+local function DevTools_Cache_Userdata(self, value, newName)
+	if (not self.uCache) then
+		self.uCache = DevTools_InitUserdataCache(self)
+	end
+	local name = self.uCache[value]
+	if ((not name) and newName) then
+		self.uCache[value] = newName
+	end
+	return name
+end
+local function DevTools_Cache_Table(self, value, newName)
+	if (not self.tCache) then
+		self.tCache = {}
+	end
+	local name = self.tCache[value]
+	if ((not name) and newName) then
+		self.tCache[value] = newName
+	end
+	return name
+end
+local function Pick_Cache_Function(func, setting)
+	if (setting) then
+		return func
+	else
+		return DevTools_Cache_Nil
+	end
+end
 local function DevTools_DumpTableContents(val, prefix, firstPrefix, context)
 	local showCount = 0
 	local oldDepth = context.depth
