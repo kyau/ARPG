@@ -104,7 +104,20 @@ local function ARPG_ShowUIPanel(frame, force)
 		_G.CharacterFrame:SetPoint("TOPLEFT", "ARPG_CharacterFrame", "TOPLEFT", 157, -388)
 		_G.CharacterFrame.TitleText:ClearAllPoints()
 		_G.CharacterFrame.TitleText:SetPoint("BOTTOM", _G.CharacterFrameInset, "TOP", 0, 73)
+	else
+		ARPG_CharacterFrame:Hide()
 	end
+
+	if _G.DressUpFrame:IsShown() or frame == DressUpFrame then
+		_G.DressUpFrame:ClearAllPoints()
+		_G.DressUpFrame:SetPoint("TOP", "UIParent", "TOP", 0, -80)
+	end
+
+	if _G.TradeSkillFrame:IsShown() then
+		_G.TradeSkillFrame:ClearAllPoints()
+		_G.TradeSkillFrame:SetPoint("TOP", "UIParent", "TOP", 0, -90)
+	end
+	
 end
 local function ARPG_HideUIPanel(frame, skipSetPoint)
 	if frame == GameMenuFrame then
@@ -116,6 +129,20 @@ local function ARPG_HideUIPanel(frame, skipSetPoint)
 		_G.CharacterFrame:SetPoint("TOPLEFT", "ARPG_CharacterFrame", "TOPLEFT", 157, -388)
 		_G.CharacterFrame.TitleText:ClearAllPoints()
 		_G.CharacterFrame.TitleText:SetPoint("BOTTOM", _G.CharacterFrameInset, "TOP", 0, 73)
+	else
+		ARPG_CharacterFrame:Hide()
+	end
+
+	if _G.DressUpFrame:IsShown() then
+		_G.DressUpFrame:ClearAllPoints()
+		_G.DressUpFrame:SetPoint("TOP", "UIParent", "TOP", 0, -80)
+	end
+
+	if IsAddOnLoaded("Blizzard_TradeSkillUI") then
+		if _G.TradeSkillFrame:IsShown() then
+			_G.TradeSkillFrame:ClearAllPoints()
+			_G.TradeSkillFrame:SetPoint("TOP", "UIParent", "TOP", 0, -90)
+		end
 	end
 end
 hooksecurefunc("ShowUIPanel", ARPG_ShowUIPanel)
@@ -191,8 +218,10 @@ function Skin_PortraitFrameTemplateNoCloseButton(Frame)
 end
 function Skin_PortraitFrameTemplate(Frame)
 	Skin_PortraitFrameTemplateNoCloseButton(Frame)
-	Skin_UIPanelCloseButton(Frame.CloseButton)
-	--Frame.CloseButton:SetPoint("TOPRIGHT", -5, -5)
+	--Skin_UIPanelCloseButton(Frame.CloseButton)
+	Frame.CloseButton:SetNormalTexture(nil)
+	Frame.CloseButton:SetPushedTexture(nil)
+	Frame.CloseButton:SetPoint("TOPRIGHT", -176, 120)
 end
 function Skin_InsetFrameTemplate(Frame)
 	Frame.Bg:Hide()
@@ -279,7 +308,8 @@ function Skin_PaperDollItemSlotButtonTemplate(Button)
 end
 local function Skin_ItemButtonSize(button, size)
 	button:SetSize(size,size)
-	button.AzeriteTexture:Hide()
+	--button.AzeriteTexture:Hide()
+	button.AzeriteTexture:SetSize(size,size)
 	button.IconBorder:SetSize(size,size)
 	button.IconOverlay:SetSize(size,size)
 	button.RankFrame:SetSize(size,size)
@@ -357,8 +387,9 @@ local function ARPG_ToggleCharacter(tab, onlyShow)
 				_G.CharacterModelFrame:ClearAllPoints()
 				_G.CharacterModelFrame:SetPoint("TOP", _G.CharacterFrameInset, "TOP", 0, 70)
 				_G.CharacterModelFrameControlFrame:ClearAllPoints()
-				_G.CharacterModelFrameControlFrame:SetPoint("TOP", _G.CharacterModelFrame, "BOTTOM", 0, 32)
+				_G.CharacterModelFrameControlFrame:SetPoint("TOP", _G.CharacterModelFrame, "BOTTOM", 0, 64)
 
+				--characterframe location
 				_G.CharacterFrame:ClearAllPoints()
 				_G.CharacterFrame:SetPoint("TOPLEFT", "ARPG_CharacterFrame", "TOPLEFT", 157, -388)
 				--frame sizes
@@ -369,15 +400,15 @@ local function ARPG_ToggleCharacter(tab, onlyShow)
 				--reanchor right frame
 				_sizey = 218
 				_G.CharacterFrameInsetRight:ClearAllPoints()
-				_G.CharacterFrameInsetRight:SetPoint("TOPLEFT", "CharacterFrameInset", "BOTTOMLEFT", -16, 232)
-				_G.CharacterFrameInsetRight:SetSize(_sizex, _sizey)
-				StatScrollFrame:SetSize(_sizex, _sizey)
+				_G.CharacterFrameInsetRight:SetPoint("TOPLEFT", "CharacterFrameInset", "BOTTOMLEFT", 64, 244)
+				_G.CharacterFrameInsetRight:SetSize(_sizex - 120, _sizey + 56)
+				StatScrollFrame:SetSize(_sizex, _sizey - 30)
 				_G.PaperDollTitlesPane:SetSize(_sizex, _sizey)
 				_G.PaperDollEquipmentManagerPane:SetSize(_sizex, _sizey)
 				_G.PaperDollSidebarTabs:ClearAllPoints()
-				_G.PaperDollSidebarTabs:SetPoint("TOPLEFT", "CharacterFrameInsetRight", "BOTTOMRIGHT", -110, -22)
+				_G.PaperDollSidebarTabs:SetPoint("TOPLEFT", "CharacterFrameInsetRight", "BOTTOMRIGHT", -64, -62)
 				DCS_configButton:ClearAllPoints()
-				DCS_configButton:SetPoint("TOPLEFT", "CharacterFrameInsetRight", "BOTTOMRIGHT", 6, 16)
+				DCS_configButton:SetPoint("TOPLEFT", "CharacterFrameInsetRight", "BOTTOMRIGHT", 50, 30)
 				CharacterStatsPane.ClassBackground:Hide()
 
 				--item slots
@@ -397,10 +428,12 @@ local function ARPG_ToggleCharacter(tab, onlyShow)
 					if equipSlotName == "CharacterHeadSlot" then
 						button:ClearAllPoints()
 						button:SetPoint("TOPLEFT", _G.CharacterFrameInset, 16, 56)
+						button.AzeriteTexture:SetTexture(nil)
 					elseif equipSlotName == "CharacterChestSlot" then
 						chestSlot = button
 						button:ClearAllPoints()
 						button:SetPoint("TOPLEFT", prevSlot, "BOTTOMLEFT", 0, -6)
+						button.AzeriteTexture:SetTexture(nil)
 					elseif equipSlotName == "CharacterNeckSlot" then
 						button:ClearAllPoints()
 						--button:SetPoint("TOP", _G.CharacterFrameInset, 0, 52)
@@ -411,6 +444,7 @@ local function ARPG_ToggleCharacter(tab, onlyShow)
 					elseif equipSlotName == "CharacterShoulderSlot" then
 						button:ClearAllPoints()
 						button:SetPoint("TOPLEFT", _G.CharacterFrameInset, 16, 20)
+						button.AzeriteTexture:SetTexture(nil)
 					elseif equipSlotName == "CharacterShirtSlot" then
 						button:ClearAllPoints()
 						button:SetPoint("TOPRIGHT", _G.CharacterFrameInset, -46, 56)
@@ -485,7 +519,7 @@ hooksecurefunc("CloseAllWindows", ARPG_CloseAllWindows)
 --tradeskills
 local function ARPG_TradeSkillFrame()
 	_G.TradeSkillFrame:ClearAllPoints()
-	_G.TradeSkillFrame:SetPoint("TOP", "UIParent", "TOP", 0, -100)
+	_G.TradeSkillFrame:SetPoint("TOP", "UIParent", "TOP", 0, -90)
 end
 --_G.TradeSkillFrame:HookScript("OnShow", ARPG_TradeSkillFrame)
 kLib:RegisterCallback("TRADE_SKILL_SHOW", ARPG_TradeSkillFrame)
