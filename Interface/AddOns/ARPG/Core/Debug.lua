@@ -113,6 +113,29 @@ local function prepSimpleKey(val, context)
     end
     return string_format(FORMATS.bracketTableKey, prepSimple(val, context));
 end
+local function DevTools_InitUserdataCache(context)
+	local ret = {};
+	for _,k in ipairs(userdataSymbols) do
+		local v = getglobal(k);
+		if (type(v) == 'table') then
+			local u = rawget(v,0);
+			if (type(u) == 'userdata') then
+				ret[u] = k .. '[0]';
+			end
+		end
+	end
+	for k,v in pairs(getfenv(0)) do
+		if (type(v) == 'table') then
+			local u = rawget(v, 0);
+			if (type(u) == 'userdata') then
+				if (not ret[u]) then
+					ret[u] = k .. '[0]';
+				end
+			end
+		end
+	end
+	return ret;
+end
 local function DevTools_Cache_Nil(self, value, newName)
 	return nil;
 end
@@ -260,7 +283,7 @@ function DevTools_Dump(value, startKey)
 	context.GetTableName = Pick_Cache_Function(DevTools_Cache_Table, DEVTOOLS_USE_TABLE_CACHE)
 	context.GetFunctionName = Pick_Cache_Function(DevTools_Cache_Function, DEVTOOLS_USE_FUNCTION_CACHE)
 	context.GetUserdataName = Pick_Cache_Function(DevTools_Cache_Userdata, DEVTOOLS_USE_USERDATA_CACHE)
-	context.Write = DevTools_Write
+	context.Write = print
 	DevTools_RunDump(value, context)
 end
 local function DevTools_DumpCommand(msg, editBox)
@@ -663,3 +686,7 @@ kLib:CreateSlashCmd("fs", ARPG_FrameStack_Toggle)
 BINDING_HEADER_DEVTOOLS = "ARPG Debug"
 BINDING_NAME_DEVTOOLS_FRAMESTACK_ONHOLD = "Hold to toggle FrameStack display"
 BINDING_NAME_DEVTOOLS_FRAMESTACK_CYCLE = "Toggle FrameStack display"
+functionSymbols = {};
+userdataSymbols = {};
+local funcSyms = functionSymbols;
+local userSyms = userdataSymbols;

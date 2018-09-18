@@ -8,14 +8,14 @@
 ## Title-esES:|cffff69b4ARPG|r|cffefefef Required:|r Proceso
 ## Title-esMX:|cffff69b4ARPG|r|cffefefef Required:|r Proceso
 ## Title-frFR:|cffff69b4ARPG|r|cffefefef Required:|r Noyau
-## Notes: Action RPG UI (based on art from Diablo 3)|n|cff696969Version 1.1.3|r
-## Dependencies: !BugGrabber, BugSack, AdiBags, DejaCharacterStats, Dominos
+## Notes: Action RPG UI (based on art from Diablo 3)|n|cff696969Version 1.2.4|r
+## Dependencies: !BugGrabber, BugSack, AdiBags, Bazooka, Dominos
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 ## SavedVariables: ARPG_CONFIG, ARPG_LDB_MONEY
 ## Author: Kyau@Tichondrius
 ## X-Website: https://kyaulabs.com/
-## Version: v1.1.3
+## Version: v1.2.4
 
 Bindings.xml
 Embeds.xml
