@@ -3,11 +3,11 @@
 Action RPG UI is based on art from Diablo 3 and heavily based on [RothUI](https://www.wowinterface.com/downloads/info9175-RothUIDiablo.html) with inspirations from Path of Exile.
 
 <p align="center">
-	<img src="./screenshot.png" alt="ARPG Screenshot"
+	<img src="./screenshot.gif" alt="ARPG Screenshot"
 		width="654" height="276">
 </p>
 
-:warning: ***ARPG is a work-in-progress, all configuration is currently hard-coded (this means editing Lua is required to reposition/change anything)***
+:warning: *ARPG is a work-in-progress, all configuration is currently hard-coded (this means editing Lua is required to reposition/change anything)*
 
 ## Required AddOns
 All of the following addons are integral to getting the UI setup properly. Unlike other UI packs I have chosen not to hardcode my modifications to these. This means that if ARPG does make changes to these addons it does so in a modular way, meaning you can always run the official versions of these addons.
@@ -46,6 +46,7 @@ Many AddOns have helped me in the development of the ARPG UI. Many AddOns have a
 * AutoLootPlus (fast loot code)
 * AzeriteTooltips (integrated into my tooltips)
 * Coordinates (fixing my InfoStrings coords errors)
+* DejaCharacterStats/Light&Shadow ElvUI (CharacterArmory/StatsPane stuff)
 * Gallywix Azerite Ledger (vital to the creation of my Azerite LDB)
 * Ara Broker Money/Friends&Guild converted to "ARPG: Money" and "ARPG: Social" LDB plugins
 * VisionBossMod (slowly I am integrated most stuff from here, sans the boss mod, into ARPG)
