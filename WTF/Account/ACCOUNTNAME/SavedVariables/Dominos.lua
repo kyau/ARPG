@@ -23,14 +23,23 @@ DominosDB = {
 					["padH"] = 2,
 					["numButtons"] = 9,
 					["pages"] = {
-						["MAGE"] = {
+						["WARRIOR"] = {
 							["page2"] = 1,
 							["page5"] = 4,
 							["page4"] = 3,
 							["page3"] = 2,
 							["page6"] = 5,
 						},
-						["WARRIOR"] = {
+						["ROGUE"] = {
+							["page2"] = 1,
+							["shadowdance"] = 6,
+							["page5"] = 4,
+							["page4"] = 3,
+							["stealth"] = 6,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
+						["MAGE"] = {
 							["page2"] = 1,
 							["page5"] = 4,
 							["page4"] = 3,
@@ -48,6 +57,13 @@ DominosDB = {
 							["page3"] = 2,
 							["page6"] = 5,
 						},
+						["PRIEST"] = {
+							["page2"] = 1,
+							["page5"] = 4,
+							["page4"] = 3,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
 					},
 					["padW"] = 2,
 				}, -- [1]
@@ -62,11 +78,15 @@ DominosDB = {
 					["padH"] = 2,
 					["padW"] = 2,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["numButtons"] = 4,
@@ -82,11 +102,15 @@ DominosDB = {
 					["padH"] = 2,
 					["padW"] = 2,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["numButtons"] = 4,
@@ -102,11 +126,15 @@ DominosDB = {
 					["spacing"] = 4,
 					["padH"] = 2,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["numButtons"] = 2,
@@ -122,11 +150,15 @@ DominosDB = {
 					["padH"] = 2,
 					["y"] = 160,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["numButtons"] = 12,
@@ -140,11 +172,15 @@ DominosDB = {
 					["padH"] = 2,
 					["y"] = -164,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["numButtons"] = 12,
@@ -158,11 +194,15 @@ DominosDB = {
 					["padH"] = 2,
 					["y"] = -124,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["numButtons"] = 12,
@@ -179,11 +219,15 @@ DominosDB = {
 					["padH"] = 2,
 					["numButtons"] = 2,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["fadeAlpha"] = 0.2,
@@ -197,11 +241,15 @@ DominosDB = {
 					["padH"] = 2,
 					["y"] = -44,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["numButtons"] = 12,
@@ -215,11 +263,15 @@ DominosDB = {
 					["padH"] = 2,
 					["y"] = -4,
 					["pages"] = {
-						["MAGE"] = {
-						},
 						["WARRIOR"] = {
 						},
+						["ROGUE"] = {
+						},
+						["MAGE"] = {
+						},
 						["DRUID"] = {
+						},
+						["PRIEST"] = {
 						},
 					},
 					["numButtons"] = 12,

@@ -12,111 +12,7 @@ BazookaDB = {
 	["profiles"] = {
 		["Default"] = {
 			["numBars"] = 5,
-			["plugins"] = {
-				["launcher"] = {
-					["Dominos"] = {
-						["enabled"] = false,
-						["pos"] = 2,
-					},
-					["Bazooka"] = {
-						["enabled"] = false,
-					},
-					["Azerite"] = {
-						["area"] = "center",
-						["showText"] = true,
-						["pos"] = 1,
-						["bar"] = 2,
-					},
-					["Zygors"] = {
-						["pos"] = 1,
-						["bar"] = 2,
-					},
-					["SavedInstances"] = {
-						["area"] = "center",
-						["pos"] = 1,
-						["bar"] = 5,
-					},
-					["DBM"] = {
-						["enabled"] = false,
-						["pos"] = 1,
-					},
-				},
-				["data source"] = {
-					["GC-Cache"] = {
-						["pos"] = 1,
-					},
-					["|cffaa0000ARPG:|r |cffffffffMoney|r"] = {
-						["area"] = "left",
-						["alignment"] = "LEFT",
-						["bar"] = 4,
-						["pos"] = 1,
-					},
-					["BugSack"] = {
-						["bar"] = 3,
-						["pos"] = 2,
-					},
-					["iGear"] = {
-						["area"] = "left",
-						["pos"] = 1,
-						["bar"] = 3,
-					},
-					["Broker Volume"] = {
-						["area"] = "center",
-						["pos"] = 2,
-					},
-					["|cffaa0000ARPG:|r |cffffffffFriends|r"] = {
-						["area"] = "cright",
-						["pos"] = 1,
-					},
-					["WeakAuras"] = {
-						["enabled"] = false,
-						["pos"] = 2,
-					},
-					["|cffff69b4ARPG:|r |cffffffffFriends|r"] = {
-						["area"] = "center",
-						["pos"] = 4,
-					},
-					["|cffaa0000ARPG:|r Money"] = {
-						["pos"] = 2,
-					},
-					["GC-Missions"] = {
-						["pos"] = 2,
-					},
-					["|cffff69b4ARPG:|r |cffffffffMoney|r"] = {
-						["area"] = "left",
-						["pos"] = 1,
-						["bar"] = 4,
-					},
-					["AdiBags"] = {
-						["alignment"] = "LEFT",
-						["pos"] = 2,
-						["bar"] = 4,
-					},
-					["GC-Farms"] = {
-						["pos"] = 3,
-					},
-					["Skada"] = {
-						["showText"] = false,
-						["pos"] = 1,
-						["bar"] = 3,
-					},
-					["GSE GnomeSequencer-Enhanced"] = {
-						["enabled"] = false,
-						["pos"] = 1,
-					},
-					["GC-WorkOrders"] = {
-						["pos"] = 4,
-					},
-					["|cffff69b4ARPG:|r |cffffffffGuild|r"] = {
-						["area"] = "center",
-						["pos"] = 3,
-					},
-					["|cffaa0000ARPG:|r |cffffffffGuild|r"] = {
-						["area"] = "cleft",
-						["pos"] = 1,
-					},
-				},
-			},
+			["locked"] = true,
 			["bars"] = {
 				{
 					["bgEnabled"] = false,
@@ -242,6 +138,117 @@ BazookaDB = {
 					},
 					["bgInset"] = 4,
 				}, -- [5]
+			},
+			["plugins"] = {
+				["launcher"] = {
+					["Dominos"] = {
+						["enabled"] = false,
+						["pos"] = 2,
+					},
+					["Bazooka"] = {
+						["enabled"] = false,
+					},
+					["Azerite"] = {
+						["area"] = "center",
+						["showText"] = true,
+						["pos"] = 2,
+						["bar"] = 2,
+					},
+					["Zygors"] = {
+						["pos"] = 1,
+						["bar"] = 2,
+					},
+					["SavedInstances"] = {
+						["area"] = "center",
+						["pos"] = 1,
+						["bar"] = 5,
+					},
+					["DBM"] = {
+						["enabled"] = false,
+						["pos"] = 1,
+					},
+				},
+				["data source"] = {
+					["GC-Cache"] = {
+						["pos"] = 1,
+					},
+					["|cffaa0000ARPG:|r |cffffffffMoney|r"] = {
+						["area"] = "left",
+						["alignment"] = "LEFT",
+						["bar"] = 4,
+						["pos"] = 1,
+					},
+					["BugSack"] = {
+						["area"] = "center",
+						["bar"] = 2,
+						["pos"] = 1,
+					},
+					["iGear"] = {
+						["area"] = "left",
+						["pos"] = 1,
+						["bar"] = 3,
+					},
+					["Broker Volume"] = {
+						["area"] = "center",
+						["pos"] = 2,
+					},
+					["|cffaa0000ARPG:|r |cffffffffFriends|r"] = {
+						["area"] = "cright",
+						["pos"] = 1,
+					},
+					["WeakAuras"] = {
+						["enabled"] = false,
+						["pos"] = 2,
+					},
+					["|cffff69b4ARPG:|r |cffffffffFriends|r"] = {
+						["area"] = "center",
+						["pos"] = 4,
+					},
+					["|cffaa0000ARPG:|r Money"] = {
+						["pos"] = 2,
+					},
+					["GC-Missions"] = {
+						["pos"] = 2,
+					},
+					["|cffff69b4ARPG:|r |cffffffffMoney|r"] = {
+						["area"] = "left",
+						["pos"] = 1,
+						["bar"] = 4,
+					},
+					["Broker_ProfessionsMenu"] = {
+						["showText"] = false,
+						["pos"] = 1,
+						["bar"] = 3,
+					},
+					["AdiBags"] = {
+						["alignment"] = "LEFT",
+						["pos"] = 2,
+						["bar"] = 4,
+					},
+					["GC-Farms"] = {
+						["pos"] = 3,
+					},
+					["Skada"] = {
+						["showText"] = false,
+						["pos"] = 2,
+						["bar"] = 3,
+					},
+					["GSE GnomeSequencer-Enhanced"] = {
+						["enabled"] = false,
+						["pos"] = 1,
+					},
+					["GC-WorkOrders"] = {
+						["pos"] = 4,
+					},
+					["|cffff69b4ARPG:|r |cffffffffGuild|r"] = {
+						["area"] = "center",
+						["pos"] = 3,
+					},
+					["|cffaa0000ARPG:|r |cffffffffGuild|r"] = {
+						["area"] = "cleft",
+						["pos"] = 1,
+					},
+				},
 			},
 			["enableHL"] = false,
 		},
