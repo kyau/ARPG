@@ -389,7 +389,7 @@ local function UNIT_SPELLCAST_CHANNEL_UPDATE(self, event, unit, _, spellID)
 	if(self.unit ~= unit and self.realUnit ~= unit) then return end
 
 	local element = self.Castbar
-	local name, _, _, _, startTime, endTime = UnitChannelInfo(unit)
+	local name, _, _, startTime, endTime = UnitChannelInfo(unit)
 	if(not name or not element:IsShown()) then
 		return
 	end
