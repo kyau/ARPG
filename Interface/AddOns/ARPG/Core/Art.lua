@@ -395,7 +395,7 @@ local function ARPG_CreateStatIcon(title)
 		end
 		_G[frame]:Hide()
 		_G[frame.."Label"]:Hide()
-		kLib:Print("Created "..name.." Icon/Text")
+		--kLib:Print("Created "..name.." Icon/Text")
 		prevFrame = frame
 	end
 end
@@ -1075,12 +1075,8 @@ local function ARPG_ToggleCharacter(tab, onlyShow)
 				local _sizex, _sizey = _G.CharacterFrame:GetSize()
 				_G.CharacterFrame:SetSize(_sizex,522)
 				_sizex, _sizey = _G.CharacterFrameInset:GetSize()
-				_G.CharacterFrameInset:SetSize(_sizex,458)
-				--reanchor right frame
+				--_G.CharacterFrameInset:SetSize(_sizex,200)
 				_sizey = 288
-				--_G.CharacterFrameInsetRight:ClearAllPoints()
-				--_G.CharacterFrameInsetRight:SetPoint("TOPLEFT", "CharacterFrameInset", "BOTTOMLEFT", 64, 244)
-				--_G.CharacterFrameInsetRight:SetSize(_sizex - 120, _sizey + 56)
 				--titles
 				_G.PaperDollTitlesPane:ClearAllPoints()
 				_G.PaperDollTitlesPane:SetFrameStrata("HIGH")
@@ -1106,15 +1102,18 @@ local function ARPG_ToggleCharacter(tab, onlyShow)
 				_G.PaperDollEquipmentManagerPaneScrollBarScrollUpButton:Hide()
 				_G.PaperDollEquipmentManagerPaneScrollBarScrollDownButton:Hide()
 				_G.PaperDollEquipmentManagerPane:SetSize(_sizex, _sizey)
+				--characterframe icons (character, titles, equipmanager)
 				_G.PaperDollSidebarTabs:ClearAllPoints()
-				_G.PaperDollSidebarTabs:SetPoint("TOPRIGHT", "CharacterFrame", "BOTTOMRIGHT", -160, -2)
+				_G.PaperDollSidebarTabs:SetPoint("TOPRIGHT", "CharacterFrame", "BOTTOMRIGHT", -284, -48)
+				--characterframe tabs
+				_G.CharacterFrameTab1:SetPoint("TOPLEFT", "CharacterFrame", "BOTTOMLEFT", 70, 2)
 				--ARPG logo
 				if not ARPG_CharacterFrameLogo then
 					_G.CharacterFrame:CreateTexture("ARPG_CharacterFrameLogo", "ARTWORK")
 					ARPG_CharacterFrameLogo:ClearAllPoints()
-					ARPG_CharacterFrameLogo:SetPoint("TOP", "CharacterFrame", "BOTTOM", -72, -108)
+					ARPG_CharacterFrameLogo:SetPoint("TOP", "ARPG_CharacterFrame", "BOTTOM", 0, 300)
 					ARPG_CharacterFrameLogo:SetTexture("Interface\\AddOns\\"..addon.."\\Media\\Logo.tga")
-					ARPG_CharacterFrameLogo:SetSize(128,16)
+					ARPG_CharacterFrameLogo:SetSize(96,24)
 					ARPG_CharacterFrameLogo:SetAlpha(0.8)
 					ARPG_CharacterFrameLogo:Show()
 				end
@@ -1130,6 +1129,90 @@ end
 local function ARPG_CharacterFrame_Hide()
 	ARPG_CharacterFrame:Hide()
 end
+local function ARPG_ReputationFrame()
+	if _G.ReputationFrame:IsShown() then
+		local repFrame = _G.ReputationFrame
+		if not _G.ARPG_ReputationFrameBG then
+			local f = CreateFrame("Frame", "ARPG_ReputationFrameBG", repFrame)
+			f:SetFrameStrata("MEDIUM", 1)
+			f:SetAlpha(1)
+			f:ClearAllPoints()
+			f:SetWidth(314)
+			f:SetHeight(276)
+			--f:SetDrawLayer("BACKGROUND", 0)
+			f:SetPoint("BOTTOM", _G.CharacterFrameInset, "TOP", 2, -214)
+			f.texture = f:CreateTexture(nil, "BACKGROUND")
+			f.texture:SetAllPoints(true)
+			f.texture:SetColorTexture(0,0,0)
+			f:Show()
+		end
+		_G.ReputationFrame:ClearAllPoints()
+		_G.ReputationFrame:SetPoint("TOPLEFT", _G.ARPG_ReputationFrameBG, 0, 64)
+		_G.ReputationFrame:SetPoint("BOTTOMRIGHT", _G.ARPG_ReputationFrameBG, 0, 0)
+		--_G.ReputationFrame:SetHeight(276)
+
+		_G.ReputationListScrollFrame:ClearAllPoints()
+		_G.ReputationListScrollFrame:SetPoint("TOPLEFT", _G.ARPG_ReputationFrameBG, 0, 0)
+		_G.ReputationListScrollFrame:SetPoint("BOTTOMRIGHT", _G.ARPG_ReputationFrameBG, 0, 0)
+		_G.ReputationListScrollFrame:SetHeight(276)
+		_G.ReputationListScrollFrameScrollChildFrame:ClearAllPoints()
+		_G.ReputationListScrollFrameScrollChildFrame:SetPoint("TOPLEFT", _G.ARPG_ReputationFrameBG, 0, 0)
+		_G.ReputationListScrollFrameScrollChildFrame:SetPoint("BOTTOMRIGHT", _G.ARPG_ReputationFrameBG, 0, 0)
+		_G.ReputationListScrollFrameScrollChildFrame:SetHeight(276)
+		--print(_G.ReputationFrame:GetSize())
+		_G.ReputationBar1:SetPoint("TOPRIGHT", _G.ReputationFrame, "TOPRIGHT", -50, -68);
+		_G.ReputationFrameFactionLabel:Hide()
+		_G.ReputationFrameStandingLabel:Hide()
+		--_G.CharacterFrameInset:SetHeight(276)
+
+		_G.ReputationListScrollFrameScrollBar:Hide()
+		_G.ReputationListScrollFrameScrollBarThumbTexture:SetTexture(nil)
+		_G.ReputationListScrollFrameScrollBarScrollUpButton:Hide()
+		_G.ReputationListScrollFrameScrollBarScrollDownButton:Hide()
+		--_G.ReputationListScrollFrameScrollBarBg:Hide()
+		--_G.ReputationListScrollFrameScrollBarBottom:Hide()
+		--_G.ReputationListScrollFrameScrollBarTop:Hide()
+	end
+end
+local function ARPG_TokenFrame()
+	if _G.TokenFrame:IsShown() then
+		local tokenFrame = _G.TokenFrame
+		if not _G.ARPG_TokenFrameBG then
+			local f = CreateFrame("Frame", "ARPG_TokenFrameBG", tokenFrame)
+			f:SetFrameStrata("MEDIUM", 1)
+			f:SetAlpha(1)
+			f:ClearAllPoints()
+			f:SetWidth(314)
+			f:SetHeight(276)
+			--f:SetDrawLayer("BACKGROUND", 0)
+			f:SetPoint("BOTTOM", _G.CharacterFrameInset, "TOP", 2, -214)
+			f.texture = f:CreateTexture(nil, "BACKGROUND")
+			f.texture:SetAllPoints(true)
+			f.texture:SetColorTexture(0,0,0)
+			f:Show()
+		end
+
+		_G.TokenFrame:ClearAllPoints()
+		_G.TokenFrame:SetPoint("TOPLEFT", _G.ARPG_TokenFrameBG, "TOPLEFT", 0, 0)
+		--_G.TokenFrame:SetPoint("BOTTOMRIGHT", _G.ARPG_TokenFrameBG, 0, 0)
+		_G.TokenFrame:SetHeight(276)
+		_G.TokenFrame:SetWidth(314)
+
+		_G.TokenFrameContainer:ClearAllPoints()
+		_G.TokenFrameContainer:SetPoint("TOPLEFT", _G.ARPG_TokenFrameBG, "TOPLEFT", 0, 0)
+		--_G.TokenFrameContainer:SetPoint("BOTTOMRIGHT", _G.ARPG_TokenFrameBG, 0, 0)
+		_G.TokenFrameContainer:SetHeight(276)
+		_G.TokenFrameContainer:SetWidth(314)
+		_G.TokenFrameContainer.scrollBar:Enable()
+		--_G.TokenFrameContainer.scrollBar:SetValue(0)
+
+		_G.TokenFrameContainerScrollChild:ClearAllPoints()
+		_G.TokenFrameContainerScrollChild:SetPoint("TOPLEFT", _G.ARPG_TokenFrameBG, "TOPLEFT", 0, 0)
+		--_G.TokenFrameContainerScrollChild:SetPoint("BOTTOMRIGHT", _G.ARPG_TokenFrameBG, 0, 0)
+		_G.TokenFrameContainerScrollChild:SetHeight(276)
+		_G.TokenFrameContainerScrollChild:SetWidth(314)
+	end
+end
 hooksecurefunc("ToggleCharacter", ARPG_ToggleCharacter)
 CharacterFrameCloseButton:HookScript("OnClick", ARPG_CharacterCloseButton)
 hooksecurefunc("CharacterFrame_OnHide", ARPG_CharacterFrame_Hide)
@@ -1143,6 +1226,29 @@ end)
 hooksecurefunc("PaperDollFrame_SetSidebar", function()
 	CharacterStatsPane:Hide()
 end)
+_G.ReputationFrame:HookScript("OnShow", ARPG_ReputationFrame)
+hooksecurefunc("ReputationFrame_OnShow", ARPG_ReputationFrame)
+hooksecurefunc("FauxScrollFrame_OnVerticalScroll", ARPG_ReputationFrame)
+_G.TokenFrame:HookScript("OnShow", ARPG_TokenFrame)
+hooksecurefunc("TokenFrame_OnShow", ARPG_TokenFrame)
+hooksecurefunc("TokenFrame_Update", ARPG_TokenFrame)
+hooksecurefunc("HybridScrollFrame_Update", ARPG_TokenFrame)
+--[[
+hooksecurefunc("CharacterFrame_ShowSubFrame", function()
+	if frameName == "ReputationFrame" then
+		ARPG_ReputationFrame()
+	end
+end)
+hooksecurefunc("CharacterFrameTab_OnClick", function(self, button)
+	local name = self:GetName()
+	if name == "CharacterFrameTab2" then
+		ARPG_ReputationFrame()
+	elseif name == "CharacterFrameTab3" then
+		--ARPG_TokenFrame()
+	end
+end)
+]]
+--hooksecurefunc("ReputationFrame_Update", ARPG_ReputationFrame)
 kLib:RegisterCallback("UPDATE_INVENTORY_ALERTS", ARPG_CharacterFrameUpdate)
 
 kLib:RegisterCallback("PLAYER_LOGIN", ARPG_CharacterStatsUpdate)

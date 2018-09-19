@@ -25,7 +25,7 @@ ARPG_CONFIG = ARPG_CONFIG or DefaultConfig
 --event functions
 local function ARPG_Events_ADDON_FULLY_LOADED()
 	local version, build, bdate, toc = GetBuildInfo()
-	print("|TInterface\\AddOns\\ARPG\\Media\\Logo:44:242:0:0|t")
+	--print("|TInterface\\AddOns\\ARPG\\Media\\Logo.tga:32:128:0:0|t")
 	print("|cffff69b4ARPG:|r "..ARPG.version.." — ".."|cffffc700WoW:|r v"..version.."-"..build.." ("..bdate..") — |cffffc700Interface:|r "..toc)
 	print(" ")
 end
@@ -41,6 +41,15 @@ end
 
 function ARPG_Events_PLAYER_LOGIN(self, event, args, ...)
 	self:UnregisterEvent("UI_ERROR_MESSAGE")
+	--set dynamic camera pitch
+	local pitch = GetCVar("test_cameraDynamicPitch")
+	local pitchFov = GetCVar("test_cameraDynamicPitchBaseFovPad")
+	if not pitch == 1 then
+		SetCVar("test_cameraDynamicPitch", 1)
+	end
+	if not pitchFov == 0.65 then
+		SetCVar("test_cameraDynamicPitchBaseFovPad", 0.65)
+	end
 end
 
 function ARPG_Events_PLAYER_ENTERING_WORLD(self, event, args, ...)
