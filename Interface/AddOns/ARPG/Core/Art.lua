@@ -404,33 +404,7 @@ local function ARPG_CharacterFrameUpdate()
 	if CharacterFrame:IsShown() then
 		local CharacterStatsPane = _G.CharacterStatsPane
 		CharacterStatsPane:Hide()
-		--[[
-		local level = UnitLevel("player")
-		if level >= MIN_PLAYER_LEVEL_FOR_ITEM_LEVEL_DISPLAY then
-			CharacterStatsPane.ItemLevelFrame.Background:Hide()
-			CharacterStatsPane.ItemLevelCategory:Hide()
-			CharacterStatsPane.ItemLevelFrame:ClearAllPoints()
-			CharacterStatsPane.ItemLevelFrame:SetPoint("TOP", CharacterStatsPane, "TOP", 0, -10)
-			CharacterStatsPane.ItemLevelFrame.Value:SetFont("Interface\\AddOns\\"..addon.."\\Media\\Fonts\\VerlagCondensed-Bold.ttf", 20, "OUTLINE")
-			local p_itemlevel = tostring(CharacterStatsPane.ItemLevelFrame.numericValue)
-			CharacterStatsPane.ItemLevelFrame.Value:SetText("|cffc0c0c0Item Level: |r"..p_itemlevel)
-			--left stats
-			CharacterStatsPane.AttributesCategory:ClearAllPoints()
-			CharacterStatsPane.AttributesCategory:SetSize(170,35)
-			CharacterStatsPane.AttributesCategory.Background:SetSize(170,35)
-			CharacterStatsPane.AttributesCategory:SetPoint("TOPLEFT", CharacterFrameInsetRight, "TOPLEFT", -72, -48)
-			--right stats
-			CharacterStatsPane.EnhancementsCategory:ClearAllPoints()
-			CharacterStatsPane.EnhancementsCategory:SetSize(170,35)
-			CharacterStatsPane.EnhancementsCategory.Background:SetSize(170,35)
-			CharacterStatsPane.EnhancementsCategory:SetPoint("TOPRIGHT", CharacterFrameInsetRight, "TOPRIGHT", 68, -48)
-			CharacterStatsPane.EnhancementsCategory.Title:SetText("Secondary")
-		else
-			CharacterStatsPane.AttributesCategory:ClearAllPoints()
-			CharacterStatsPane.AttributesCategory:SetPoint("TOP", CharacterStatsPane, "TOP", 0, -2)
-		end
-		CharacterStatsPane.ClassBackground:Hide()
-		]]
+
 		if not _G["ARPG_CharStatsFrame"] then
 			local charFrame = _G.CharacterFrame
 			local f = CreateFrame("Frame", "ARPG_CharStatsFrame", charFrame)
@@ -480,38 +454,21 @@ local function ARPG_CharacterFrameUpdate()
 		ARPG_CreateStatIcon("HASTE")
 		ARPG_CreateStatIcon("MASTERY")
 		ARPG_CreateStatIcon("VERSATILITY")
-		--ARPG_CreateStateIcon(CharStats["PRIMARY-STAT"])
-		--[[
-		if not ARPG_CharStatsHealth then
-			_G.CharacterFrame:CreateTexture("ARPG_CharStatsHealth", "ARTWORK")
-			ARPG_CharStatsHealth:ClearAllPoints()
-			ARPG_CharStatsHealth:SetPoint("TOPLEFT", "CharacterFrame", "BOTTOMLEFT", 20, 200)
-			ARPG_CharStatsHealth:SetTexture("Interface\\AddOns\\"..addon.."\\Media\\Textures\\StatIcons\\Icon-Health.tga")
-			ARPG_CharStatsHealth:SetSize(32,32)
-			ARPG_CharStatsHealth:SetAlpha(1)
-			_G.CharacterFrame:CreateFontString("ARPG_CharStatsHealthLabel", "ARTWORK")
-			_G.CharacterFrame:CreateFontString("ARPG_CharStatsHealthValue", "ARTWORK")
-			ARPG_CharStatsHealthLabel:SetFont("Interface\\AddOns\\"..addon.."\\Media\\Fonts\\VerlagCondensed-Bold.ttf", 10, "OUTLINE")
-			ARPG_CharStatsHealthValue:SetFont("Interface\\AddOns\\"..addon.."\\Media\\Fonts\\Economica-Bold.ttf", 10, "OUTLINE")
-			ARPG_CharStatsHealthLabel:ClearAllPoints()
-			ARPG_CharStatsHealthValue:ClearAllPoints()
-			ARPG_CharStatsHealthLabel:SetPoint("BOTTOMLEFT", "ARPG_CharStatsHealth", "BOTTOMRIGHT", 2, 4)
-			ARPG_CharStatsHealthValue:SetPoint("TOPLEFT", "ARPG_CharStatsHealth", "TOPRIGHT", 2, -4)
-			ARPG_CharStatsHealthValue:SetTextColor(0.15294, 0.8, 0.30588)
-			ARPG_CharStatsHealthLabel:SetText("HEALTH")
-			--kLib:Print("Created Health Icon/Text")
-		end
-		]]
+
 		--stats: player
+		local playerClass = UnitClass("player")
 		if _G["ARPG_CharStatsPlayer"] then
 			local playerName = UnitName("player")
 			local playerLevel = UnitLevel("player")
 			local playerRace = UnitRace("player")
-			local playerClass = UnitClass("player")
 			local _, playerSpec = GetSpecializationInfo(GetSpecialization())
 			local playerGuild = GetGuildInfo("player")
 			local playerRealm = GetRealmName()
-			_G["ARPG_CharStatsPlayer"]:SetText(playerLevel.." "..playerRace.." "..playerSpec.." "..playerClass.." |cfff8b700<"..playerGuild..">|r "..playerRealm)
+			if playerGuild then
+				_G["ARPG_CharStatsPlayer"]:SetText(playerLevel.." "..playerRace.." "..playerSpec.." "..playerClass.." |cfff8b700<"..playerGuild..">|r "..playerRealm)
+			else
+				_G["ARPG_CharStatsPlayer"]:SetText(playerLevel.." "..playerRace.." "..playerSpec.." "..playerClass.." "..playerRealm)
+			end
 		end
 		--staticons: achievements
 		if CharStats["ACHIEVEMENTS"] ~= nil then
@@ -563,11 +520,11 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsMana:Show()
 				ARPG_CharStatsManaLabel:Show()
 				ARPG_CharStatsManaValue:Show()
-			else
-				ARPG_CharStatsMana:Hide()
-				ARPG_CharStatsManaLabel:Hide()
-				ARPG_CharStatsManaValue:Hide()
 			end
+		else
+			ARPG_CharStatsMana:Hide()
+			ARPG_CharStatsManaLabel:Hide()
+			ARPG_CharStatsManaValue:Hide()
 		end
 		--staticons: rage
 		if CharStats["RAGE"] ~= nil then
@@ -577,11 +534,11 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsRage:Show()
 				ARPG_CharStatsRageLabel:Show()
 				ARPG_CharStatsRageValue:Show()
-			else
-				ARPG_CharStatsRage:Hide()
-				ARPG_CharStatsRageLabel:Hide()
-				ARPG_CharStatsRageValue:Hide()
 			end
+		else
+			ARPG_CharStatsRage:Hide()
+			ARPG_CharStatsRageLabel:Hide()
+			ARPG_CharStatsRageValue:Hide()
 		end
 		--staticons: focus
 		if CharStats["FOCUS"] ~= nil then
@@ -591,7 +548,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsFocus:Show()
 				ARPG_CharStatsFocusLabel:Show()
 				ARPG_CharStatsFocusValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsFocus then
 				ARPG_CharStatsFocus:Hide()
 				ARPG_CharStatsFocusLabel:Hide()
 				ARPG_CharStatsFocusValue:Hide()
@@ -605,7 +564,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsEnergy:Show()
 				ARPG_CharStatsEnergyLabel:Show()
 				ARPG_CharStatsEnergyValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsEnergy then
 				ARPG_CharStatsEnergy:Hide()
 				ARPG_CharStatsEnergyLabel:Hide()
 				ARPG_CharStatsEnergyValue:Hide()
@@ -619,7 +580,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsRunicPower:Show()
 				ARPG_CharStatsRunicPowerLabel:Show()
 				ARPG_CharStatsRunicPowerValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsRunicPower then
 				ARPG_CharStatsRunicPower:Hide()
 				ARPG_CharStatsRunicPowerLabel:Hide()
 				ARPG_CharStatsRunicPowerValue:Hide()
@@ -633,7 +596,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsMaelstrom:Show()
 				ARPG_CharStatsMaelstromLabel:Show()
 				ARPG_CharStatsMaelstromValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsMaelstrom then
 				ARPG_CharStatsMaelstrom:Hide()
 				ARPG_CharStatsMaelstromLabel:Hide()
 				ARPG_CharStatsMaelstromValue:Hide()
@@ -647,7 +612,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsInsanity:Show()
 				ARPG_CharStatsInsanityLabel:Show()
 				ARPG_CharStatsInsanityValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsInsanity then
 				ARPG_CharStatsInsanity:Hide()
 				ARPG_CharStatsInsanityLabel:Hide()
 				ARPG_CharStatsInsanityValue:Hide()
@@ -661,7 +628,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsFury:Show()
 				ARPG_CharStatsFuryLabel:Show()
 				ARPG_CharStatsFuryValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsFury then
 				ARPG_CharStatsFury:Hide()
 				ARPG_CharStatsFuryLabel:Hide()
 				ARPG_CharStatsFuryValue:Hide()
@@ -675,7 +644,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsPain:Show()
 				ARPG_CharStatsPainLabel:Show()
 				ARPG_CharStatsPainValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsPain then
 				ARPG_CharStatsPain:Hide()
 				ARPG_CharStatsPainLabel:Hide()
 				ARPG_CharStatsPainValue:Hide()
@@ -706,6 +677,12 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsAgilityLabel:Hide()
 				ARPG_CharStatsAgilityValue:Hide()
 			end
+		else
+			if ARPG_CharStatsAgility then
+				ARPG_CharStatsAgility:Hide()
+				ARPG_CharStatsAgilityLabel:Hide()
+				ARPG_CharStatsAgilityValue:Hide()
+			end
 		end
 		--staticons: intellect
 		if CharStats["INTELLECT"] ~= nil then
@@ -716,6 +693,12 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsIntellectLabel:Show()
 				ARPG_CharStatsIntellectValue:Show()
 			else
+				ARPG_CharStatsIntellect:Hide()
+				ARPG_CharStatsIntellectLabel:Hide()
+				ARPG_CharStatsIntellectValue:Hide()
+			end
+		else
+			if ARPG_CharStatsIntellect then
 				ARPG_CharStatsIntellect:Hide()
 				ARPG_CharStatsIntellectLabel:Hide()
 				ARPG_CharStatsIntellectValue:Hide()
@@ -734,6 +717,12 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsStrengthLabel:Hide()
 				ARPG_CharStatsStrengthValue:Hide()
 			end
+		else
+			if ARPG_CharStatsStrength then
+				ARPG_CharStatsStrength:Hide()
+				ARPG_CharStatsStrengthLabel:Hide()
+				ARPG_CharStatsStrengthValue:Hide()
+			end
 		end
 		--staticons: critical strike
 		if CharStats["CRITICAL-STRIKE"] ~= nil then
@@ -743,7 +732,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsCriticalStrike:Show()
 				ARPG_CharStatsCriticalStrikeLabel:Show()
 				ARPG_CharStatsCriticalStrikeValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsCriticalStrike then
 				ARPG_CharStatsCriticalStrike:Hide()
 				ARPG_CharStatsCriticalStrikeLabel:Hide()
 				ARPG_CharStatsCriticalStrikeValue:Hide()
@@ -757,7 +748,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsHaste:Show()
 				ARPG_CharStatsHasteLabel:Show()
 				ARPG_CharStatsHasteValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsHaste then
 				ARPG_CharStatsHaste:Hide()
 				ARPG_CharStatsHasteLabel:Hide()
 				ARPG_CharStatsHasteValue:Hide()
@@ -771,7 +764,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsMastery:Show()
 				ARPG_CharStatsMasteryLabel:Show()
 				ARPG_CharStatsMasteryValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsMastery then
 				ARPG_CharStatsMastery:Hide()
 				ARPG_CharStatsMasteryLabel:Hide()
 				ARPG_CharStatsMasteryValue:Hide()
@@ -785,7 +780,9 @@ local function ARPG_CharacterFrameUpdate()
 				ARPG_CharStatsVersatility:Show()
 				ARPG_CharStatsVersatilityLabel:Show()
 				ARPG_CharStatsVersatilityValue:Show()
-			else
+			end
+		else
+			if ARPG_CharStatsVersatility then
 				ARPG_CharStatsVersatility:Hide()
 				ARPG_CharStatsVersatilityLabel:Hide()
 				ARPG_CharStatsVersatilityValue:Hide()
@@ -930,6 +927,7 @@ local function ARPG_CharacterStatsUpdate()
 	--if not PaperDollFrame:IsVisible() and not InterfaceOptionsFrame:IsVisible() then
 		--return
 	--end
+	local playerClass = UnitClass("player")
 	--achievements
 	CharStats["ACHIEVEMENTS"] = GetTotalAchievementPoints(IN_GUILD_VIEW)
 	--item level
@@ -968,6 +966,25 @@ local function ARPG_CharacterStatsUpdate()
 	else
 		--error?
 	end
+	--manipulate a bit for druids
+	if playerClass == "Druid" then
+		local druidForm = GetShapeshiftForm()
+		if druidForm == 0 or druidForm == 3 or druidForm == 4 or druidForm == 5 or druidForm == 6 then
+			CharStats["ENERGY"] = nil
+			CharStats["RAGE"] = nil
+		elseif druidForm == 1 then
+			CharStats["ENERGY"] = nil
+			CharStats["MANA"] = nil
+		elseif druidForm == 2 then
+			CharStats["RAGE"] = nil
+			CharStats["MANA"] = nil
+		end
+		--kLib:Print("Shapeshift Form: "..druidForm)
+		--kLib:Print("Energy: "..CharStats["ENERGY"])
+		--kLib:Print("Mana: "..CharStats["MANA"])
+		--kLib:Print("Rage: "..CharStats["RAGE"])
+	end
+	
 	--primary stats
 	local primaryStat, spec;
 	spec = GetSpecialization();
@@ -1256,6 +1273,7 @@ kLib:RegisterCallback("PLAYER_SPECIALIZATION_CHANGED", ARPG_CharacterStatsUpdate
 kLib:RegisterCallback("UNIT_AURA", ARPG_CharacterStatsUpdate)
 kLib:RegisterCallback("UPDATE_INVENTORY_DURABILITY", ARPG_CharacterStatsUpdate)
 kLib:RegisterCallback("PLAYER_EQUIPMENT_CHANGED", ARPG_CharacterStatsUpdate)
+kLib:RegisterCallback("UPDATE_SHAPESHIFT_FORMS", ARPG_CharacterStatsUpdate)
 
 -- item level on items
 local ITEMLEVEL_SLOT_FRAMES = {
