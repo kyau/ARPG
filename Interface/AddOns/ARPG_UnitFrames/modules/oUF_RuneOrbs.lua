@@ -2,12 +2,22 @@ if select(2, UnitClass("player")) ~= "DEATHKNIGHT" then return end
 
 local parent, ns = ...
 local oUF = ns.oUF or oUF
-
+--[[]
+--for specs
 oUF.colors.runes = {
 	{1,0,0}, --blood
-	{0,1,0}, --unholy
 	{0,1,1}, --frost
+	{0,1,0}, --unholy
 	{1,0,1}, --death
+}]]
+--tri-colors
+oUF.colors.runes = {
+	{1,0,0}, --blood
+	{1,0,0}, --blood
+	{0,1,1}, --frost
+	{0,1,1}, --frost
+	{0,1,0}, --unholy
+	{0,1,0}, --unholy
 }
 
 local runemap = { 1, 2, 5, 6, 3, 4 }
@@ -24,10 +34,11 @@ end
 
 local UpdateType = function(self, event, rid, alt)
 	local rune = self.RuneOrbs[runemap[rid]]
-	local colors = self.colors.runes[GetRuneType(rid) or alt]
+	--local colors = self.colors.runes[GetSpecialization() or alt]
+	local colors = self.colors.runes[rid or alt]
 	local r, g, b = colors[1], colors[2], colors[3]
 	rune.fill:SetStatusBarColor(r, g, b)
-	rune.glow:SetVertexColor(r, g, b)
+	rune.glow:SetVertexColor(r, g, b, 0.5)
 end
 
 local UpdateRune = function(self, event, rid)
@@ -83,7 +94,7 @@ local Enable = function(self, unit)
 		end
 
 		self:RegisterEvent("RUNE_POWER_UPDATE", UpdateRune, true)
-		self:RegisterEvent("RUNE_TYPE_UPDATE", UpdateType, true)
+		--self:RegisterEvent("RUNE_TYPE_UPDATE", UpdateType, true)
 		self:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR", Visibility, true)
 		self:RegisterEvent("UNIT_ENTERED_VEHICLE", Visibility)
 		self:RegisterEvent("UNIT_EXITED_VEHICLE", Visibility)
@@ -105,7 +116,7 @@ local Disable = function(self)
 		RuneFrame.Show = nil
 		RuneFrame:Show()
 		self:UnregisterEvent("RUNE_POWER_UPDATE", UpdateRune)
-		self:UnregisterEvent("RUNE_TYPE_UPDATE", UpdateType)
+		--self:UnregisterEvent("RUNE_TYPE_UPDATE", UpdateType)
 		self:UnregisterEvent("UPDATE_OVERRIDE_ACTIONBAR", Visibility)
 		self:UnregisterEvent("UNIT_ENTERED_VEHICLE", Visibility)
 		self:UnregisterEvent("UNIT_EXITED_VEHICLE", Visibility)

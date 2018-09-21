@@ -107,7 +107,7 @@ cfg.units = {
 			show = true,
 			scale = 0.40,
 			color = {r = 200/255, g = 135/255, b = 190/255, },
-			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 650 },
+			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 260 },
 			combat = { --fade the bar in/out in combat/out of combat
 				enable = false,
 				fadeIn = {time = 0.4, alpha = 1},
@@ -118,7 +118,7 @@ cfg.units = {
 			show = false,
 			scale = 0.40,
 			color = {r = 80/255, g = 20/255, b = 130/255, },
-			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 650 },
+			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 260 },
 			combat = { --fade the bar in/out in combat/out of combat
 				enable = false,
 				fadeIn = {time = 0.4, alpha = 1},
@@ -129,7 +129,7 @@ cfg.units = {
 			show = true,
 			scale = 0.40,
 			color = {r = 41/255, g = 209/255, b = 157/255, },
-			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 650 },
+			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 260 },
 			combat = { --fade the bar in/out in combat/out of combat
 				enable = false,
 				fadeIn = {time = 0.4, alpha = 1},
@@ -139,7 +139,7 @@ cfg.units = {
 		runes = { --class bar DK
 			show = true,
 			scale = 0.40,
-			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 650 },
+			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 260 },
 			combat = { --fade the bar in/out in combat/out of combat
 				enable = false,
 				fadeIn = {time = 0.4, alpha = 1},
@@ -150,7 +150,7 @@ cfg.units = {
 			show = true,
 			scale = 0.40,
 			color = {r = 0.9, g = 0.59, b = 0, },
-			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 470 },
+			pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 0, y = 260 },
 			combat = { --fade the bar in/out in combat/out of combat
 				enable = false,
 				fadeIn = {time = 0.4, alpha = 1},
@@ -312,8 +312,8 @@ cfg.units = {
 	--PET
 	pet = {
 		show = true,
-		scale = 0.85,
-		pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 500, y = -100 },
+		scale = 0.75,
+		pos = { a1 = "BOTTOM", a2 = "BOTTOM", af = "UIParent", x = 670, y = -100 },
 		auras = {
 			show = true,
 			size = 22,
@@ -598,7 +598,7 @@ cfg.units = {
 	--BOSSFRAMES
 	boss = {
 		show = true,
-		scale = 1,
+		scale = 0.8,
 		pos = { a1 = "CENTER", a2 = "CENTER", af = "UIParent", x = -350, y = 50 },
 		health = {
 			texture = "Interface\\AddOns\\ARPG\\Media\\Textures\\UnitFrames\\statusbar128_3",
