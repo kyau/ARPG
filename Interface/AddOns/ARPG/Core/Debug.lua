@@ -136,6 +136,23 @@ local function DevTools_InitUserdataCache(context)
 	end
 	return ret;
 end
+local function DevTools_InitFunctionCache(context)
+	local ret = {};
+	for _,k in ipairs(functionSymbols) do
+		local v = getglobal(k);
+		if (type(v) == 'function') then
+			ret[v] = '[' .. k .. ']';
+		end
+	end
+	for k,v in pairs(getfenv(0)) do
+		if (type(v) == 'function') then
+			if (not ret[v]) then
+				ret[v] = '[' .. k .. ']';
+			end
+		end
+	end
+	return ret;
+end
 local function DevTools_Cache_Nil(self, value, newName)
 	return nil;
 end

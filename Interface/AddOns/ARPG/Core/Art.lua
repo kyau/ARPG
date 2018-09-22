@@ -291,33 +291,24 @@ function Skin_CropIcon(texture, parent)
 	end
 end
 function Skin_ItemButtonTemplate(Button)
-	--Skin_CropIcon(Button.icon)
-
 	Button.Count:SetPoint("BOTTOMRIGHT", -2, 2)
-
-	local bg = _G.CreateFrame("Frame", nil, Button)
-	bg:SetFrameLevel(Button:GetFrameLevel())
-	bg:SetPoint("TOPLEFT", -1, 1)
-	bg:SetPoint("BOTTOMRIGHT", 1, -1)
-	bg:SetBackdropColor(0,0,0,0.3)
-	Button._auroraIconBorder = bg
-
+	if not Button._auroraIconBorder then
+		--kLib:Print("Creating Aurora Icon Border "..Button:GetName())
+		local bg = _G.CreateFrame("Frame", nil, Button)
+		bg:SetFrameLevel(Button:GetFrameLevel())
+		bg:SetPoint("TOPLEFT", -1, 1)
+		bg:SetPoint("BOTTOMRIGHT", 1, -1)
+		bg:SetBackdropColor(0,0,0,0.3)
+		Button._auroraIconBorder = bg
+	end
 	Button:SetNormalTexture("")
-	--Skin_CropIcon(Button:GetPushedTexture())
-	--Skin_CropIcon(Button:GetHighlightTexture())
-
-	--[[ Scale ]]--
 	Button:SetSize(Button:GetSize())
 end
 function Skin_PaperDollAzeriteItemOverlayTemplate(Frame)
 	Frame.RankFrame.Label:SetPoint("CENTER", Frame.RankFrame.Texture, 0, 0)
-	--print(Frame.IconOverlay:GetAtlas():GetTexture())
 end
 function Skin_EquipmentFlyoutPopoutButtonTemplate(Button)
 	local tex = Button:GetNormalTexture()
-	--Base.SetTexture(tex, "arrowRight")
-	--tex:SetVertexColor(Color.highlight:GetRGB())
-	--Button._auroraArrow = tex
 	Button:SetHighlightTexture("")
 end
 function Skin_PaperDollItemSlotButtonTemplate(Button)
@@ -329,16 +320,40 @@ function Skin_PaperDollItemSlotButtonTemplate(Button)
 	if Button.verticalFlyout then
 		Button.popoutButton:SetPoint("LEFT", Button, "BOTTOM")
 		Button.popoutButton:SetSize(38, 8)
-		--Base.SetTexture(Button.popoutButton._auroraArrow, "arrowDown")
 	else
 		Button.popoutButton:SetPoint("LEFT", Button, "RIGHT")
 		Button.popoutButton:SetSize(8, 38)
 	end
 end
-local function Skin_ItemButtonSize(button, size)
+local function Skin_ItemButtonSize(button, size, azeriteSize, transmog, i, isWeapon)
+	if not azeriteSize then
+		azeriteSize = 0
+	end
+	if isWeapon then
+		i = "Weapon"..i
+	end
+	if not button.TransmogOverlay then
+		--kLib:Print("Created Transmog Overlay #"..i)
+		local transmogSize = (size * 0.75)
+		local layer, subLevel = button.IconOverlay:GetDrawLayer()
+		local TransmogOverlay = button:CreateTexture("TransmogOverlay"..i, layer, nil, subLevel - 1)
+		TransmogOverlay:SetTexture("Interface\\AddOns\\"..addon.."\\Media\\Textures\\TransmogOverlay.tga")
+		TransmogOverlay:SetSize(transmogSize,transmogSize)
+		TransmogOverlay:SetAlpha(0.9)
+		TransmogOverlay:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", -2, -2)
+		button.TransmogOverlay = TransmogOverlay
+	end
+	if transmog then
+		--kLib:Print("Showing Overlay #"..i)
+		button.TransmogOverlay:Show()
+	else
+		--kLib:Print("Hiding Overlay #"..i)
+		button.TransmogOverlay:Hide()
+	end
 	button:SetSize(size,size)
-	--button.AzeriteTexture:Hide()
-	button.AzeriteTexture:SetSize(size,size)
+	if button.AzeriteTexture and azeriteSize ~= 0 then
+		button.AzeriteTexture:SetSize(azeriteSize,(azeriteSize-1))
+	end
 	button.IconBorder:SetSize(size,size)
 	button.IconOverlay:SetSize(size,size)
 	button.RankFrame:SetSize(size,size)
@@ -803,15 +818,32 @@ local function ARPG_CharacterFrameUpdate()
 			local button = _G[EquipmentSlots[i]]
 			local noSize = false
 			local equipSlotName = tostring(EquipmentSlots[i])
+			--kLib:Print("Slot: "..i)
+			local transmogApplied = false
+			local transmogSlotID,_ = GetInventorySlotInfo(string.gsub(equipSlotName, "Character", ""))
+			if i ~= 2 and i < 13 then
+				local baseSourceID, baseVisualID, appliedSourceID, appliedVisualID, pendingSourceID, pendingVisualID, hasPendingUndo = C_Transmog.GetSlotVisualInfo(transmogSlotID, LE_TRANSMOG_TYPE_APPEARANCE)
+				--kLib:Print("Slot "..equipSlotName.." | appliedSourceID: "..appliedSourceID.." | pendingSourceID: "..pendingSourceID)
+				if appliedSourceID > 0 or pendingSourceID > 0 then
+					--kLib:Print("Slot #"..i..": Transmog Found!")
+					transmogApplied = true
+				end
+			else
+				transmogApplied = false
+			end
 			if equipSlotName == "CharacterHeadSlot" then
 				button:ClearAllPoints()
 				button:SetPoint("TOPLEFT", _G.CharacterFrameInset, 16, 56)
-				button.AzeriteTexture:SetTexture(nil)
+				button.AzeriteTexture:SetTexture("Interface\\AddOns\\"..addon.."\\Media\\Textures\\AzeriteItemOverlay.tga")
+				--button.IconBorder:Hide()
+				--button.AzeriteTexture:SetTexture(nil)
 			elseif equipSlotName == "CharacterChestSlot" then
 				chestSlot = button
 				button:ClearAllPoints()
 				button:SetPoint("TOPLEFT", prevSlot, "BOTTOMLEFT", 0, -6)
-				button.AzeriteTexture:SetTexture(nil)
+				button.AzeriteTexture:SetTexture("Interface\\AddOns\\"..addon.."\\Media\\Textures\\AzeriteItemOverlay.tga")
+				--button.IconBorder:Hide()
+				--button.AzeriteTexture:SetTexture(nil)
 			elseif equipSlotName == "CharacterNeckSlot" then
 				button:ClearAllPoints()
 				button:SetPoint("TOPLEFT", _G.CharacterFrameInset, 64, 51)
@@ -821,16 +853,18 @@ local function ARPG_CharacterFrameUpdate()
 			elseif equipSlotName == "CharacterShoulderSlot" then
 				button:ClearAllPoints()
 				button:SetPoint("TOPLEFT", _G.CharacterFrameInset, 16, 20)
-				button.AzeriteTexture:SetTexture(nil)
+				button.AzeriteTexture:SetTexture("Interface\\AddOns\\"..addon.."\\Media\\Textures\\AzeriteItemOverlay.tga")
+				--button.IconBorder:Hide()
+				--button.AzeriteTexture:SetTexture(nil)
 			elseif equipSlotName == "CharacterShirtSlot" then
 				button:ClearAllPoints()
 				button:SetPoint("TOPRIGHT", _G.CharacterFrameInset, -46, 56)
-				Skin_ItemButtonSize(button, 24)
+				Skin_ItemButtonSize(button, 24, 0, transmogApplied, i, false)
 				noSize = true
 			elseif equipSlotName == "CharacterTabardSlot" then
 				button:ClearAllPoints()
 				button:SetPoint("TOPLEFT", prevSlot, "BOTTOMLEFT", 0, -6)
-				Skin_ItemButtonSize(button, 24)
+				Skin_ItemButtonSize(button, 24, 0, transmogApplied, i, false)
 				noSize = true
 			elseif equipSlotName == "CharacterWristSlot" then
 				button:ClearAllPoints()
@@ -845,31 +879,40 @@ local function ARPG_CharacterFrameUpdate()
 				else
 					button:SetPoint("TOPLEFT", prevSlot, "BOTTOMLEFT", -32, -4)
 				end
-				Skin_ItemButtonSize(button, 28)
+				Skin_ItemButtonSize(button, 28, 0, transmogApplied, i, false)
 				noSize = true
 			elseif equipSlotName == "CharacterFinger1Slot" or equipSlotName == "CharacterTrinket1Slot" then
 				button:ClearAllPoints()
 				button:SetPoint("LEFT", prevSlot, "RIGHT", 4, 0)
-				Skin_ItemButtonSize(button, 28)
+				Skin_ItemButtonSize(button, 28, 0, transmogApplied, i, false)
 				noSize = true
 			else
 				button:SetPoint("TOPLEFT", prevSlot, "BOTTOMLEFT", 0, -4)
 			end
-			if not noSize then Skin_ItemButtonSize(button, 32) end
-			if button.IsLeftSide then
-				Skin_PaperDollItemSlotButtonTemplate(button)
-			elseif button.IsLeftSide == false then
-				Skin_PaperDollItemSlotButtonTemplate(button)
-			end
+			if not noSize then Skin_ItemButtonSize(button, 32, 42, transmogApplied, i, false) end
+			Skin_PaperDollItemSlotButtonTemplate(button)
 			prevSlot = button
 		end
 		--weapon and offhand
 		for i = 1, #WeaponSlots do
 			local button = _G[WeaponSlots[i]]
+			local equipSlotName = tostring(WeaponSlots[i])
+			local transmogApplied = false
+			local transmogSlotID,_ = GetInventorySlotInfo(string.gsub(equipSlotName, "Character", ""))
+			--if i ~= 2 then
+				local baseSourceID, baseVisualID, appliedSourceID, appliedVisualID, pendingSourceID, pendingVisualID, hasPendingUndo = C_Transmog.GetSlotVisualInfo(transmogSlotID, LE_TRANSMOG_TYPE_APPEARANCE)
+				if baseSourceID ~= appliedSourceID then
+					--kLib:Print("Slot #"..i..": Transmog Found!")
+					transmogApplied = true
+				end
+			--else
+				--transmogApplied = false
+			--end
 			if i == 1 then
 				-- main hand
 				button:ClearAllPoints()
 				button:SetPoint("BOTTOMLEFT", _G.CharacterFrameInset, 16, 254)
+				Skin_ItemButtonSize(button, 37, 0, transmogApplied, i, true)
 			end
 			Skin_PaperDollItemSlotButtonTemplate(button)
 			_G.select(13, button:GetRegions()):Hide()
@@ -1283,6 +1326,7 @@ local ITEMLEVEL_SLOT_FRAMES = {
 	CharacterMainHandSlot,CharacterSecondaryHandSlot,
 }
 for _, v in ipairs(ITEMLEVEL_SLOT_FRAMES) do
+	--kLib:Print("Creating Item Level Frame #"..v:GetName())
 	v.ilevel = v:CreateFontString("FontString","OVERLAY","GameTooltipText")
 	v.ilevel:SetFormattedText("")
 end
@@ -1404,7 +1448,7 @@ hooksecurefunc("QuestPOI_ClearSelection", ARPG_QuestPOI_ClearSelection)
 
 kLib:CreateArtFrame("ARPG_TopBar", "Interface\\AddOns\\ARPG\\Media\\Textures\\TopBar.tga", "BACKGROUND", 3, 1024, 64, "TOP", 0, 6, 0.64, false, false)
 kLib:CreateArtFrame("ARPG_BottomBarBG", "Interface\\AddOns\\ARPG\\Media\\Textures\\BottomBarBG.tga", "BACKGROUND", 0, 2048, 255, "BOTTOM", 0, 0, 0.64, false, false)
-kLib:CreateArtFrame("ARPG_BottomBar", "Interface\\AddOns\\ARPG\\Media\\Textures\\BottomBar.tga", "BACKGROUND", 4, 2048, 255, "BOTTOM", 0, 0, 0.64, false, false)
+kLib:CreateArtFrame("ARPG_BottomBar", "Interface\\AddOns\\ARPG\\Media\\Textures\\BottomBar.tga", "BACKGROUND", 6, 2048, 255, "BOTTOM", 0, 0, 0.64, false, false)
 kLib:CreateArtFrame("ARPG_GameMenu", "Interface\\AddOns\\ARPG\\Media\\Textures\\GameMenu.tga", "BACKGROUND", 0, 512, 1024, "CENTER", 0, 0, 0.45, false, true)
 kLib:CreateArtFrame("ARPG_CharacterFrame", "Interface\\AddOns\\ARPG\\Media\\Textures\\CharacterFrame.tga", "MEDIUM", 1, 1024, 2048, "LEFT", -220, 0, 0.641, false, true)
 kLib:CreateArtFrame("ARPG_StaticPopup", "Interface\\AddOns\\ARPG\\Media\\Textures\\StaticPopup.tga", "DIALOG", 0, 512, 256, "CENTER", 0, 250, 0.85, false, true)

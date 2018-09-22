@@ -345,7 +345,7 @@
     --skull+lowhp
     if orb.type == "HEALTH" then
 
-      local skull = overlay:CreateTexture(nil, "BACKGROUND", nil, 1)
+      local skull = overlay:CreateTexture("$parentSkull", "BACKGROUND", nil, 1)
       skull:SetPoint("CENTER",0,0)
       skull:SetSize(self.cfg.size-40,self.cfg.size-40)
       skull:SetTexture("Interface\\AddOns\\ARPG\\Media\\Textures\\UnitFrames\\d2_skull")
@@ -354,7 +354,7 @@
       skull:Hide()
       orb.skull = skull
 
-      local lowHP = overlay:CreateTexture(nil, "BACKGROUND", nil, 2)
+      local lowHP = overlay:CreateTexture("$parentLowHP", "BACKGROUND", nil, 2)
       lowHP:SetPoint("CENTER",0,0)
       lowHP:SetSize(self.cfg.size-15,self.cfg.size-15)
       lowHP:SetTexture("Interface\\AddOns\\ARPG\\Media\\Textures\\UnitFrames\\orb_lowhp_glow")
@@ -519,10 +519,11 @@
       local posX = pos.x
       local posY = pos.y
       --self.Combat = func.createIcon(self,"BACKGROUND",22,self,pos.a1,pos.a2,posX,posY,-1)
-      local CombatIndicator = ARPG_UnitFramesHealthOrbScrollFrameOverlay:CreateTexture(nil, 'OVERLAY')
+      local CombatIndicator = ARPG_BottomBar:CreateTexture(nil, 'OVERLAY')
       CombatIndicator:SetTexture("Interface\\AddOns\\ARPG\\Media\\Textures\\InCombat.tga")
+      --CombatIndicator:SetDrawLayer("OVERYLAY", 7)
       CombatIndicator:SetSize(14, 15)
-      CombatIndicator:SetPoint('TOPLEFT', self, posX, posY)
+      CombatIndicator:SetPoint('TOP', ARPG_BottomBar, 0, -140)
       self.CombatIndicator = CombatIndicator
     end
 
