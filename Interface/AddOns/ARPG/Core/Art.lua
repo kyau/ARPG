@@ -1293,6 +1293,18 @@ _G.TokenFrame:HookScript("OnShow", ARPG_TokenFrame)
 hooksecurefunc("TokenFrame_OnShow", ARPG_TokenFrame)
 hooksecurefunc("TokenFrame_Update", ARPG_TokenFrame)
 hooksecurefunc("HybridScrollFrame_Update", ARPG_TokenFrame)
+--azerite item ui
+local function ARPG_AzeriteItemUI()
+	--kLib:Print("AzeriteUI Open!")
+	_G.AzeriteEmpoweredItemUI:ClearAllPoints()
+	_G.AzeriteEmpoweredItemUI:SetPoint("TOP", "UIParent", "TOP", 0, -90)
+	--local point, relativeTo, relativePoint, xOfs, yOfs = _G.AzeriteEmpoweredItemUI:GetPoint()
+	--kLib:Print("Point:"..point.." RelativeTo:"..relativeTo:GetName().." relativePoint:"..relativePoint.." xOffset:"..xOfs.." yOffset:"..yOfs)
+	if _G.CharacterFrame:IsShown() then
+		_G.CharacterFrame:ClearAllPoints()
+		_G.CharacterFrame:SetPoint("TOPLEFT", "ARPG_CharacterFrame", "TOPLEFT", 157, -388)
+	end
+end
 --[[
 hooksecurefunc("CharacterFrame_ShowSubFrame", function()
 	if frameName == "ReputationFrame" then
@@ -1310,8 +1322,20 @@ end)
 ]]
 --hooksecurefunc("ReputationFrame_Update", ARPG_ReputationFrame)
 kLib:RegisterCallback("UPDATE_INVENTORY_ALERTS", ARPG_CharacterFrameUpdate)
-
-kLib:RegisterCallback("PLAYER_LOGIN", ARPG_CharacterStatsUpdate)
+kLib:RegisterCallback("ADDON_LOADED", function(self, event, args, addon, ...)
+	if addon == "Blizzard_AzeriteUI" then
+		C_Timer.After(0, function() -- Fire on next frame instead of current frame
+			ARPG_AzeriteItemUI()
+			_G.AzeriteEmpoweredItemUI:HookScript("OnShow", ARPG_AzeriteItemUI)
+		end)
+	end
+end)
+kLib:RegisterCallback("PLAYER_LOGIN", function()
+	ARPG_CharacterStatsUpdate()
+	if _G.AzeriteEmpoweredItemUI then
+		ARPG_AzeriteItemUI()
+	end
+end)
 kLib:RegisterCallback("PLAYER_SPECIALIZATION_CHANGED", ARPG_CharacterStatsUpdate)
 kLib:RegisterCallback("UNIT_AURA", ARPG_CharacterStatsUpdate)
 kLib:RegisterCallback("UPDATE_INVENTORY_DURABILITY", ARPG_CharacterStatsUpdate)

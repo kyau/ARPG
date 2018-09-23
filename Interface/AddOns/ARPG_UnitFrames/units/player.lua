@@ -397,7 +397,7 @@
     if self.cfg.absorb.show and orb.type == "HEALTH" then
       local absorbBar = CreateFrame("StatusBar", nil, values)
       --absorbBar:SetAllPoints()
-      absorbBar:SetPoint("CENTER", 2, 5)
+      absorbBar:SetPoint("CENTER", 2, 0)
       absorbBar:SetSize(self.cfg.size-5,self.cfg.size-5)
 
       absorbBar.bg = absorbBar:CreateTexture(nil,"BACKGROUND",nil,-8)
@@ -411,7 +411,7 @@
       absorbBar.texture.maxHeight = absorbBar:GetHeight()
       absorbBar.texture:SetHeight(absorbBar.texture.maxHeight)
       absorbBar.texture:SetTexture("Interface\\AddOns\\ARPG\\Media\\Textures\\UnitFrames\\orb_absorb_glow")
-      absorbBar.texture:SetAlpha(0.85)
+      absorbBar.texture:SetAlpha(1)
       --absorbBar.texture:SetVertexColor(1,1,1,1)
       --absorbBar.texture:SetBlendMode("ADD")
       --absorbBar.texture:SetTexCoord(0,1,0,0.2)
