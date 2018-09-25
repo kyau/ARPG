@@ -30,12 +30,13 @@ All of the following addons are integral to getting the UI setup properly. Unlik
 ## Recommended AddOns
 While not required, the following addons are also heavily recommended to complete your UI/Experience.
 * [Angry Keystones](https://www.wowace.com/projects/angry-keystones)
-* [AzeritePowerWeights](https://wow.curseforge.com/projects/azeritepowerweights)
+* [AzeritePowerWeights](https://wow.curseforge.com/projects/azeritepowerweights) (Get your Azerite Weights from [here](https://bloodmallet.com/))
 * [CanIMogIt?](https://wow.curseforge.com/projects/can-i-mog-it)
-* [ChampionCommander](https://wow.curseforge.com/projects/championcommander) / [GarrisonCommander](https://mods.curse.com/addons/wow/garrisoncommander) / [OrderHallCommander](https://www.curseforge.com/wow/addons/orderhallcommander)
 * [FishingBuddy](https://wow.curseforge.com/projects/fishingbuddy)
 * [Gnome Sequencer Enhanced 2](https://wow.curseforge.com/projects/gse-gnome-sequencer-enhanced-advanced-macros)
 * [Pawn](https://wow.curseforge.com/projects/pawn)
+* [Rematch](https://wow.curseforge.com/projects/rematch)
+* [RENovate](https://wow.curseforge.com/projects/renovate-mission-table-extension)
 * [SimulationCraft](https://wow.curseforge.com/projects/simulationcraft)
 
 ## Attribution / Credits
@@ -49,3 +50,8 @@ Many AddOns have helped me in the development of the ARPG UI. Many AddOns have a
 * Ara Broker Money/Friends&Guild converted to "ARPG: Money" and "ARPG: Social" LDB plugins
 * VisionBossMod (slowly I am integrated most stuff from here, sans the boss mod, into ARPG)
 * Zork for his many addons that I have modified and converted from the old RothUI to work with BFA and ARPG
+
+There are also quite a few WeakAura presets that have been imported into this UI. The links to all third-party presets are located here.
+* [PhoGuild](https://wago.io/HkjLRrs3W)
+* [Tehr's RaidCDs](https://wago.io/RaidCDs)
+* [Dead Raiders](https://wago.io/RaiderDeaths)
