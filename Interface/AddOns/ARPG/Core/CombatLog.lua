@@ -46,16 +46,18 @@ local function ARPG_SSDI_Alert()
 end
 
 local function ARPG_FeastRepairAlert(msg, from)
-	if _G.string.find(msg, "prepares a") then
-		local pos = _G.string.find(msg, "prepares a")
-		kLib:MessageFrameWarn("|cffffffff" .. from .. "|cff00ffff " .. _G.string.sub(msg, pos), 12)
-	end
-	if _G.string.find(msg, "is hosting a") then
-		local pos = _G.string.find(msg, "is hosting a")
-		kLib:MessageFrameWarn("|cffffffff" .. from .. "|cff00ffff " .. _G.string.sub(msg, pos), 12)
-	end
-	if _G.string.find(msg, "Goblin Barbecue") then
-		kLib:MessageFrameWarn("|cffffffff" .. from .. "|cff00ffff " .. "Goblin Barbecue", 12)
+	if type(msg) == "string" then
+		if _G.string.find(msg, "prepares a") then
+			local pos = _G.string.find(msg, "prepares a")
+			kLib:MessageFrameWarn("|cffffffff" .. from .. "|cff00ffff " .. _G.string.sub(msg, pos), 12)
+		end
+		if _G.string.find(msg, "is hosting a") then
+			local pos = _G.string.find(msg, "is hosting a")
+			kLib:MessageFrameWarn("|cffffffff" .. from .. "|cff00ffff " .. _G.string.sub(msg, pos), 12)
+		end
+		if _G.string.find(msg, "Goblin Barbecue") then
+			kLib:MessageFrameWarn("|cffffffff" .. from .. "|cff00ffff " .. "Goblin Barbecue", 12)
+		end
 	end
 end
 

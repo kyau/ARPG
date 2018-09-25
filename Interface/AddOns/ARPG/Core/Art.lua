@@ -901,7 +901,7 @@ local function ARPG_CharacterFrameUpdate()
 			local transmogSlotID,_ = GetInventorySlotInfo(string.gsub(equipSlotName, "Character", ""))
 			--if i ~= 2 then
 				local baseSourceID, baseVisualID, appliedSourceID, appliedVisualID, pendingSourceID, pendingVisualID, hasPendingUndo = C_Transmog.GetSlotVisualInfo(transmogSlotID, LE_TRANSMOG_TYPE_APPEARANCE)
-				if baseSourceID ~= appliedSourceID then
+				if appliedSourceID > 0 or pendingSourceID > 0 then
 					--kLib:Print("Slot #"..i..": Transmog Found!")
 					transmogApplied = true
 				end
@@ -1459,16 +1459,24 @@ hooksecurefunc(ObjectiveTrackerFrame, "SetPoint", function(self, anchorpoint, re
 	ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:SetPoint("TOPLEFT", ObjectiveTrackerFrame, -28, -1)
 	ObjectiveTrackerBlocksFrame.QuestHeader.Background:SetTexture(nil)
 end)
-
 hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE,"SetStringText",function(self, fontString, text, useFullHeight, colorStyle, useHighlight)
 	fontString:SetTextColor(0.88235, 0.88235, 0.88235, 1)
 	fontString:SetFont("Interface\\Addons\\"..addon.."\\Media\\fonts\\VerlagCondensed-Bold.ttf", 12, "OUTLINE")
 end)
-
 hooksecurefunc("ObjectiveTracker_AddBlock", ARPG_ObjectiveTracker_AddBlock)
 hooksecurefunc("QuestPOI_GetButton", ARPG_QuestPOI_GetButton)
 hooksecurefunc("QuestPOI_SelectButton", ARPG_QuestPOI_SelectButton)
 hooksecurefunc("QuestPOI_ClearSelection", ARPG_QuestPOI_ClearSelection)
+
+--pet battle interface
+kLib:RegisterCallback("PET_BATTLE_OPENING_START", function()
+	ARPG_BottomBarBG:Hide()
+	ARPG_BottomBar:Hide()
+end)
+kLib:RegisterCallback("PET_BATTLE_CLOSE", function()
+	ARPG_BottomBarBG:Show()
+	ARPG_BottomBar:Show()
+end)
 
 kLib:CreateArtFrame("ARPG_TopBar", "Interface\\AddOns\\ARPG\\Media\\Textures\\TopBar.tga", "BACKGROUND", 3, 1024, 64, "TOP", 0, 6, 0.64, false, false)
 kLib:CreateArtFrame("ARPG_BottomBarBG", "Interface\\AddOns\\ARPG\\Media\\Textures\\BottomBarBG.tga", "BACKGROUND", 0, 2048, 255, "BOTTOM", 0, 0, 0.64, false, false)
