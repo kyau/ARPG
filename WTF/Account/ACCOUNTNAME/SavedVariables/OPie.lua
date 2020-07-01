@@ -2,8 +2,8 @@
 OneRing_Config = {
 	["CharProfiles"] = {
 	},
-	["_GameVersion"] = "8.0.1",
-	["_OPieVersion"] = "Vanilla 7 (3.93)",
+	["_GameVersion"] = "8.3.0",
+	["_OPieVersion"] = "Walnut 6 (3.101)",
 	["ProfileStorage"] = {
 		["default"] = {
 			["ClickActivation"] = true,
@@ -14,20 +14,20 @@ OneRing_Config = {
 				["CommonTrades"] = false,
 				["AfterHours"] = "-",
 				["RaidSymbols"] = false,
-				["WorldMarkers"] = false,
-				["ountFlight"] = "0",
-				["ursFishing"] = "ALT-F",
-				["OPieAutoQuest"] = false,
-				["ountGround"] = "=",
+				["ursFishing"] = false,
 				["OPieTrinkets"] = false,
 				["OPieTracking"] = false,
+				["ountGround"] = "=",
+				["OPieAutoQuest"] = false,
+				["ountFlight"] = "0",
+				["WorldMarkers"] = false,
 			},
 			["RotationTokens"] = {
 				["ABuesu/4Uwe5"] = "ABuedu/offzv",
-				["ABuespQh4zwa"] = "ABuesaegfna",
-				["ABuesu/4Uwez"] = "ABuedu/offe",
-				["ABuesyV2irC"] = "ABuesislIMr",
-				["ABuestJun9f"] = "ABuestJun9r",
+				["ABuespQh4zwa"] = "ABuespQh4zwt",
+				["ABuesu/4Uwez"] = "ABuesu/4Uwed",
+				["ABuestJun9f"] = "ABuestx3XWh",
+				["ABuesyV2irC"] = "ABuesaxH0nr",
 			},
 		},
 	},
@@ -104,55 +104,55 @@ OneRing_Config = {
 			},
 			["agePortals"] = {
 				{
-					["sliceToken"] = "ABuesu/4Uweg",
 					["id"] = 11417,
+					["sliceToken"] = "ABuesu/4Uweg",
 				}, -- [1]
 				{
-					["sliceToken"] = "ABuesu/4Uwef",
 					["id"] = 11418,
+					["sliceToken"] = "ABuesu/4Uwef",
 				}, -- [2]
 				{
-					["sliceToken"] = "ABuesu/4Uwed",
 					["id"] = 11420,
+					["sliceToken"] = "ABuesu/4Uwed",
 				}, -- [3]
 				{
-					["sliceToken"] = "ABuesu/4Uwe3",
 					["id"] = 32267,
+					["sliceToken"] = "ABuesu/4Uwe3",
 				}, -- [4]
 				{
-					["sliceToken"] = "ABuesu/4Uwes",
 					["id"] = 49361,
+					["sliceToken"] = "ABuesu/4Uwes",
 				}, -- [5]
 				{
-					["sliceToken"] = "ABuesu/4Uwea",
 					["id"] = 35717,
+					["sliceToken"] = "ABuesu/4Uwea",
 				}, -- [6]
 				{
-					["sliceToken"] = "ABuesu/4Uwep",
 					["id"] = 53142,
+					["sliceToken"] = "ABuesu/4Uwep",
 				}, -- [7]
 				{
-					["sliceToken"] = "ABuesu/4Uweo",
 					["id"] = 88346,
+					["sliceToken"] = "ABuesu/4Uweo",
 				}, -- [8]
 				{
-					["sliceToken"] = "ABuesu/4Uwe2",
 					["id"] = 132626,
+					["sliceToken"] = "ABuesu/4Uwe2",
 				}, -- [9]
 				{
-					["sliceToken"] = "ABuesu/4Uwei",
 					["id"] = 176244,
+					["sliceToken"] = "ABuesu/4Uwei",
 				}, -- [10]
 				{
-					["sliceToken"] = "ABuesu/4Uweu",
 					["id"] = 224871,
+					["sliceToken"] = "ABuesu/4Uweu",
 				}, -- [11]
 				{
-					["sliceToken"] = "ABuedu/offe",
 					["id"] = 281402,
+					["sliceToken"] = "ABuedu/offe",
 				}, -- [12]
-				["name"] = "AfterHours - Mage Portals",
 				["save"] = true,
+				["name"] = "AfterHours - Mage Portals",
 				["limit"] = "Vzo-Tichondrius",
 			},
 			["ngineering"] = {
@@ -196,59 +196,59 @@ OneRing_Config = {
 			},
 			["eTeleports"] = {
 				{
-					["sliceToken"] = "ABuesu/4Uwwd",
 					["id"] = 3567,
+					["sliceToken"] = "ABuesu/4Uwwd",
 				}, -- [1]
 				{
-					["sliceToken"] = "ABuesu/4Uww3",
 					["id"] = 3563,
+					["sliceToken"] = "ABuesu/4Uww3",
 				}, -- [2]
 				{
-					["sliceToken"] = "ABuesu/4Uwws",
 					["id"] = 3566,
+					["sliceToken"] = "ABuesu/4Uwws",
 				}, -- [3]
 				{
-					["sliceToken"] = "ABuesu/4Uwwa",
 					["id"] = 32272,
+					["sliceToken"] = "ABuesu/4Uwwa",
 				}, -- [4]
 				{
-					["sliceToken"] = "ABuedu/offzb",
 					["id"] = 49358,
+					["sliceToken"] = "ABuedu/offzb",
 				}, -- [5]
 				{
-					["sliceToken"] = "ABuesu/4Uwwo",
 					["id"] = 35715,
+					["sliceToken"] = "ABuesu/4Uwwo",
 				}, -- [6]
 				{
-					["sliceToken"] = "ABuesu/4Uww2",
 					["id"] = 53140,
+					["sliceToken"] = "ABuesu/4Uww2",
 				}, -- [7]
 				{
-					["sliceToken"] = "ABuesu/4Uwwi",
 					["id"] = 88344,
+					["sliceToken"] = "ABuesu/4Uwwi",
 				}, -- [8]
 				{
-					["sliceToken"] = "ABuesu/4Uwwu",
 					["id"] = 132627,
+					["sliceToken"] = "ABuesu/4Uwwu",
 				}, -- [9]
 				{
-					["sliceToken"] = "ABuesu/4Uwwy",
 					["id"] = 176242,
+					["sliceToken"] = "ABuesu/4Uwwy",
 				}, -- [10]
 				{
-					["sliceToken"] = "ABuesu/4Uwwt",
 					["id"] = 224869,
+					["sliceToken"] = "ABuesu/4Uwwt",
 				}, -- [11]
 				{
-					["sliceToken"] = "ABuesu/4Uww1",
 					["id"] = 193759,
+					["sliceToken"] = "ABuesu/4Uww1",
 				}, -- [12]
 				{
-					["sliceToken"] = "ABuedu/offzv",
 					["id"] = 281404,
+					["sliceToken"] = "ABuedu/offzv",
 				}, -- [13]
-				["name"] = "AfterHours - Mage Teleports",
 				["save"] = true,
+				["name"] = "AfterHours - Mage Teleports",
 				["limit"] = "Vzo-Tichondrius",
 			},
 			["AfterHours"] = {
@@ -256,8 +256,8 @@ OneRing_Config = {
 					"ring", -- [1]
 					"HoursSpecs", -- [2]
 					["sliceToken"] = "ABuestJun9f",
-					["icon"] = 1030098,
 					["embed"] = false,
+					["icon"] = 1030098,
 				}, -- [1]
 				{
 					"ring", -- [1]
@@ -273,8 +273,8 @@ OneRing_Config = {
 					["icon"] = 1030099,
 				}, -- [3]
 				{
-					["sliceToken"] = "ABuestJun9C",
 					["id"] = 69046,
+					["sliceToken"] = "ABuestJun9C",
 				}, -- [4]
 				{
 					"item", -- [1]
@@ -282,84 +282,109 @@ OneRing_Config = {
 					["sliceToken"] = "ABuestJun9o",
 				}, -- [5]
 				{
-					["id"] = 193753,
 					["sliceToken"] = "ABuesuSV2=r",
+					["id"] = 193753,
 				}, -- [6]
 				{
-					"item", -- [1]
-					110560, -- [2]
-					["sliceToken"] = "ABuestx3XWd",
+					["id"] = 18960,
+					["sliceToken"] = "ABuejgqYk2e",
 				}, -- [7]
+				{
+					["id"] = 50977,
+					["sliceToken"] = "ABuehPgJJUr",
+				}, -- [8]
+				{
+					["id"] = 312372,
+					["sliceToken"] = "ABuej1fOVoe",
+				}, -- [9]
 				{
 					"toy", -- [1]
 					64488, -- [2]
 					["sliceToken"] = "ABuestx3XWo",
-				}, -- [8]
+				}, -- [10]
+				{
+					"item", -- [1]
+					110560, -- [2]
+					["sliceToken"] = "ABuestx3XWd",
+				}, -- [11]
 				{
 					"item", -- [1]
 					140192, -- [2]
 					["sliceToken"] = "ABuestx3XW3",
-				}, -- [9]
+				}, -- [12]
 				{
 					"ring", -- [1]
 					"eTeleports", -- [2]
 					["sliceToken"] = "ABuesu/4Uwe5",
 					["embed"] = false,
-				}, -- [10]
+				}, -- [13]
 				{
 					"ring", -- [1]
 					"agePortals", -- [2]
 					["sliceToken"] = "ABuesu/4Uwez",
 					["embed"] = false,
-				}, -- [11]
+				}, -- [14]
 				{
-					["c"] = "173af0",
-					["id"] = 251463,
 					["show"] = "[zone:Antoran Wastes/Krokuun/Mac'Aree]",
 					["sliceToken"] = "ABues2NuLnr",
-				}, -- [12]
+					["c"] = "173af0",
+					["id"] = 251463,
+				}, -- [15]
 				{
 					"ring", -- [1]
 					"rHoursToys", -- [2]
 					["sliceToken"] = "ABuespQh4zwa",
-				}, -- [13]
+				}, -- [16]
 				["name"] = "AfterHours",
 				["save"] = true,
 				["hotkey"] = "H",
 			},
 			["OPieFlagStore"] = {
-				["FlushedDefaultColors"] = true,
+				["StoreVersion"] = 2,
 			},
-			["ountGround"] = {
+			["ursFishing"] = {
 				{
-					["sliceToken"] = "ABuestJun9R",
-					["c"] = "0a6bff",
-					["id"] = 41252,
+					"item", -- [1]
+					6533, -- [2]
+					["sliceToken"] = "ABuesyz60bg",
 				}, -- [1]
 				{
-					["sliceToken"] = "ABuestJun97",
-					["c"] = "282881",
-					["id"] = 64731,
+					"item", -- [1]
+					6532, -- [2]
+					["sliceToken"] = "ABuesyz60bf",
 				}, -- [2]
 				{
-					["sliceToken"] = "ABuestJun9E",
-					["id"] = 46628,
+					"item", -- [1]
+					136377, -- [2]
+					["sliceToken"] = "ABuedraIyce",
 				}, -- [3]
 				{
-					["sliceToken"] = "ABuestJun9W",
-					["id"] = 61447,
+					"toy", -- [1]
+					142528, -- [2]
+					["sliceToken"] = "ABuejdetJIu",
 				}, -- [4]
 				{
-					["sliceToken"] = "ABuestJun9Q",
-					["id"] = 34897,
+					"toy", -- [1]
+					142530, -- [2]
+					["sliceToken"] = "ABuesyz60b4",
 				}, -- [5]
 				{
-					["sliceToken"] = "ABuesjJCaLr",
-					["id"] = 258845,
+					["id"] = 201891,
+					["sliceToken"] = "ABuesyz60b3",
 				}, -- [6]
-				["name"] = "AfterHours - Mount (Ground)",
+				{
+					"toy", -- [1]
+					142529, -- [2]
+					["sliceToken"] = "ABuejdetJIy",
+				}, -- [7]
+				{
+					"toy", -- [1]
+					143662, -- [2]
+					["sliceToken"] = "ABuejdetJIt",
+				}, -- [8]
+				["name"] = "AfterHours - Fishing",
 				["save"] = true,
-				["hotkey"] = "=",
+				["hotkey"] = "ALT-F",
 			},
 			["HoursSpecs"] = {
 				{
@@ -387,62 +412,86 @@ OneRing_Config = {
 			},
 			["ountFlight"] = {
 				{
-					["sliceToken"] = "ABuestJun9K",
-					["id"] = 88741,
+					["show"] = "[spec:105/104/103/102] hide;",
+					["sliceToken"] = "ABuesogQw=1",
+					["id"] = 229388,
 				}, -- [1]
 				{
-					["sliceToken"] = "ABuestJun9J",
-					["c"] = "2fff00",
-					["id"] = 61294,
+					"mount", -- [1]
+					236, -- [2]
+					["show"] = "[spec:105/104/103/102] hide;",
+					["sliceToken"] = "ABuehPgJJUe",
 				}, -- [2]
 				{
-					["sliceToken"] = "ABuestJun9H",
-					["id"] = 59571,
+					["sliceToken"] = "ABuejyvp37t",
+					["id"] = 5487,
 				}, -- [3]
 				{
-					["sliceToken"] = "ABues2hoDke",
-					["id"] = 39801,
+					["sliceToken"] = "ABuejyvp371",
+					["id"] = 768,
 				}, -- [4]
 				{
-					["id"] = 229388,
-					["sliceToken"] = "ABuesogQw=1",
+					["sliceToken"] = "ABuejyvp37e",
+					["id"] = 783,
 				}, -- [5]
+				{
+					"mount", -- [1]
+					330, -- [2]
+					["sliceToken"] = "ABuehGc1fC1",
+					["show"] = "[spec:105/104/103/102] hide;",
+				}, -- [6]
 				{
 					["sliceToken"] = "ABuescZWxne",
 					["id"] = 253106,
-				}, -- [6]
+					["show"] = "[spec:102/105/104/103] hide;",
+				}, -- [7]
+				{
+					"mount", -- [1]
+					947, -- [2]
+					["sliceToken"] = "ABuej2fzoFi",
+				}, -- [8]
+				{
+					"mount", -- [1]
+					522, -- [2]
+					["sliceToken"] = "ABuejd6cvXe",
+				}, -- [9]
 				["name"] = "AfterHours - Mount (Flight)",
 				["save"] = true,
 				["hotkey"] = "0",
 			},
-			["ursFishing"] = {
+			["ountGround"] = {
 				{
-					"item", -- [1]
-					6533, -- [2]
-					["sliceToken"] = "ABuesyz60bg",
+					"mount", -- [1]
+					926, -- [2]
+					["sliceToken"] = "ABue4NaUJGe",
 				}, -- [1]
 				{
-					"item", -- [1]
-					6532, -- [2]
-					["sliceToken"] = "ABuesyz60bf",
+					["sliceToken"] = "ABuestJun9R",
+					["c"] = "0a6bff",
+					["id"] = 41252,
 				}, -- [2]
 				{
-					"item", -- [1]
-					136377, -- [2]
-					["sliceToken"] = "ABuedraIyce",
+					["sliceToken"] = "ABuestJun9Q",
+					["id"] = 34897,
 				}, -- [3]
 				{
-					"toy", -- [1]
-					142530, -- [2]
-					["sliceToken"] = "ABuesyz60b4",
+					"mount", -- [1]
+					961, -- [2]
+					["sliceToken"] = "ABuej2fzoFu",
 				}, -- [4]
 				{
-					["id"] = 201891,
-					["sliceToken"] = "ABuesyz60b3",
+					"mount", -- [1]
+					460, -- [2]
+					["sliceToken"] = "ABuej3oOEDe",
 				}, -- [5]
-				["name"] = "AfterHours - Fishing",
+				{
+					["sliceToken"] = "ABuestJun97",
+					["c"] = "282881",
+					["id"] = 64731,
+				}, -- [6]
+				["name"] = "AfterHours - Mount (Ground)",
 				["save"] = true,
-				["hotkey"] = "ALT-F",
+				["hotkey"] = "=",
 			},
 		},
 	},

@@ -49,6 +49,10 @@ cfg.pos = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -10, 10 }
 --cfg.pos = "ANCHOR_NONE" --"ANCHOR_CURSOR"
 
 --functions
+local function isempty(s)
+	return s == nil or s == ''
+end
+
 local function GetHexColor(color)
 	if color.r then
 		return ("%.2x%.2x%.2x"):format(color.r*255, color.g*255, color.b*255)
@@ -75,13 +79,33 @@ local function OnTooltipSetUnit(self)
 	local unitName, unit = self:GetUnit()
 	if not unit then return end
 	--color tooltip textleft2..8
-	GameTooltipTextLeft2:SetTextColor(unpack(cfg.textColor))
-	GameTooltipTextLeft3:SetTextColor(unpack(cfg.textColor))
-	GameTooltipTextLeft4:SetTextColor(unpack(cfg.textColor))
-	GameTooltipTextLeft5:SetTextColor(unpack(cfg.textColor))
-	GameTooltipTextLeft6:SetTextColor(unpack(cfg.textColor))
-	GameTooltipTextLeft7:SetTextColor(unpack(cfg.textColor))
-	GameTooltipTextLeft8:SetTextColor(unpack(cfg.textColor))
+	if not isempty(GameTooltipTextLeft2) then
+		GameTooltipTextLeft2:SetTextColor(unpack(cfg.textColor))
+	end
+	if not isempty(GameTooltipTextLeft3) then
+		GameTooltipTextLeft3:SetTextColor(unpack(cfg.textColor))
+	end
+	if not isempty(GameTooltipTextLeft4) then
+		GameTooltipTextLeft4:SetTextColor(unpack(cfg.textColor))
+	end
+	if not isempty(GameTooltipTextLeft5) then
+		GameTooltipTextLeft5:SetTextColor(unpack(cfg.textColor))
+	end
+	if not isempty(GameTooltipTextLeft6) then
+		GameTooltipTextLeft6:SetTextColor(unpack(cfg.textColor))
+	end
+	if not isempty(GameTooltipTextLeft7) then
+		GameTooltipTextLeft7:SetTextColor(unpack(cfg.textColor))
+	end
+	if not isempty(GameTooltipTextLeft8) then
+		GameTooltipTextLeft8:SetTextColor(unpack(cfg.textColor))
+	end
+	--GameTooltipTextLeft3:SetTextColor(unpack(cfg.textColor))
+	--GameTooltipTextLeft4:SetTextColor(unpack(cfg.textColor))
+	--GameTooltipTextLeft5:SetTextColor(unpack(cfg.textColor))
+	--GameTooltipTextLeft6:SetTextColor(unpack(cfg.textColor))
+	--GameTooltipTextLeft7:SetTextColor(unpack(cfg.textColor))
+	--GameTooltipTextLeft8:SetTextColor(unpack(cfg.textColor))
 	--position raidicon
 	--local raidIconIndex = GetRaidTargetIndex(unit)
 	--if raidIconIndex then
@@ -102,9 +126,11 @@ local function OnTooltipSetUnit(self)
 		--color textleft2 by classificationcolor
 		local unitClassification = UnitClassification(unit)
 		local levelLine
-		if string.find(GameTooltipTextLeft2:GetText() or "empty", "%a%s%d") then
+        if not isempty(GameTooltipTextLeft2) then
+		--if string.find(GameTooltipTextLeft2:GetText() or "empty", "%a%s%d") then
 			levelLine = GameTooltipTextLeft2
-		elseif string.find(GameTooltipTextLeft3:GetText() or "empty", "%a%s%d") then
+		--elseif string.find(GameTooltipTextLeft3:GetText() or "empty", "%a%s%d") then
+        elseif not isempty(GameTooltipTextLeft3) then
 			GameTooltipTextLeft2:SetTextColor(unpack(cfg.guildColor)) --seems like the npc has a description, use the guild color for this
 			levelLine = GameTooltipTextLeft3
 		end
@@ -290,7 +316,7 @@ hooksecurefunc("ToggleDropDownMenu", OnUIDropDownMenuClick)
 --ChatMenu
 hooksecurefunc("ChatFrame_ToggleMenu", ChatMenuOnClick)
 --FriendsFrame Tooltip
-hooksecurefunc("FriendsFrameTooltip_Show", FriendsFrameTooltip)
+--hooksecurefunc("FriendsFrameTooltip_Show", FriendsFrameTooltip)
 
 --loop over tooltips
 local tooltips = { GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ItemRefTooltip,ItemRefShoppingTooltip1,ItemRefShoppingTooltip2,WorldMapTooltip,

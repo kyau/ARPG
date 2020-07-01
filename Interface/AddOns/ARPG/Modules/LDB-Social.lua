@@ -87,11 +87,51 @@ local backdrop =  {
 local wipe, next, GetGuildRosterInfo, GetGuildRosterShowOffline, GetFriendInfo, IsInGuild, GuildRoster, ShowFriends, CLASS_BUTTONS, GetDifficultyColor, Ambiguate =
 	wipe, next, GetGuildRosterInfo, GetGuildRosterShowOffline, GetFriendInfo, IsInGuild, GuildRoster, ShowFriends, CLASS_ICON_TCOORDS, GetQuestDifficultyColor, Ambiguate
 
---Renamed in legion
-local BNGetToonInfo = BNGetGameAccountInfo or BNGetToonInfo
 --Not renamed in legion yet but might be
-local BNGetFriendInfo, BNGetNumFriends = BNGetFriendInfo, BNGetNumFriends
+local BNGetNumFriends = BNGetNumFriends
 
+--Begin Compat wrappers for retail and classic to access same functions and expect same returns
+--Retail kind of has these for now, but won't forever, and classic is not expected to make same API restructuring, so this ugly mess is probably required forever
+local function GetBNGetFriendInfo(friendIndex)
+    local accountInfo = C_BattleNet and C_BattleNet.GetFriendAccountInfo(friendIndex);
+        if accountInfo then
+            local wowProjectID = accountInfo.gameAccountInfo.wowProjectID or 0;
+            local clientProgram = accountInfo.gameAccountInfo.clientProgram ~= "" and accountInfo.gameAccountInfo.clientProgram or nil;
+
+            return  accountInfo.bnetAccountID, accountInfo.accountName, accountInfo.battleTag, accountInfo.isBattleTagFriend,
+                    accountInfo.gameAccountInfo.characterName, accountInfo.gameAccountInfo.gameAccountID, clientProgram,
+                    accountInfo.gameAccountInfo.isOnline, accountInfo.lastOnlineTime, accountInfo.isAFK, accountInfo.isDND, accountInfo.customMessage, accountInfo.note, accountInfo.isFriend,
+                    accountInfo.customMessageTime, wowProjectID, accountInfo.rafLinkType == Enum.RafLinkType.Recruit, accountInfo.gameAccountInfo.canSummon, accountInfo.isFavorite, accountInfo.gameAccountInfo.isWowMobile;
+    else
+        return BNGetFriendInfo(friendIndex)
+    end
+end
+
+local function GetBNGetGameAccountInfo(toonId)
+    local gameAccountInfo = C_BattleNet and C_BattleNet.GetGameAccountInfoByID(toonId)
+    if gameAccountInfo then
+        local wowProjectID = gameAccountInfo.wowProjectID or 0;
+        local characterName = gameAccountInfo.characterName or "";
+        local realmName = gameAccountInfo.realmName or "";
+        local realmID = gameAccountInfo.realmID or 0;
+        local factionName = gameAccountInfo.factionName or "";
+        local raceName = gameAccountInfo.raceName or "";
+        local className = gameAccountInfo.className or "";
+        local areaName = gameAccountInfo.areaName or "";
+        local characterLevel = gameAccountInfo.characterLevel or "";
+        local richPresence = gameAccountInfo.richPresence or "";
+        local gameAccountID = gameAccountInfo.gameAccountID or 0;
+        local playerGuid = gameAccountInfo.playerGuid or 0;
+        return  gameAccountInfo.hasFocus, characterName, gameAccountInfo.clientProgram,
+            realmName, realmID, factionName, raceName, className, "", areaName, characterLevel,
+                richPresence, nil, nil,
+                gameAccountInfo.isOnline, gameAccountID, nil, gameAccountInfo.isGameAFK, gameAccountInfo.isGameBusy,
+                playerGuid, wowProjectID, gameAccountInfo.isWowMobile
+    else
+        return BNGetGameAccountInfo(toonId)
+    end
+end
+--End Compat wrappers for retail and classic to access same functions and expect same returns
 local colpairs = { ["class"] = 1, ["name"] = 2, ["level"] = 3, ["zone"] = 4, ["note"] = 5, ["status"] = 6, ["rank"] = 7 }
 
 
@@ -534,16 +574,20 @@ end
 
 
 local function SetToastData( index, inGroup )
-	local toast, bc, color = toasts[index]
-	local presenceID, presenceName, battleTag, isBattleTagPresence, toonName, toonID, client, isOnline, lastOnline, isAFK, isDND, broadcast, notes = BNGetFriendInfo(index)
-	local _, _, game, realm, realmID, faction, race, class, guild, zone, level, gameText = BNGetToonInfo(toonID or 0)
-	local statusText = config.statusMode ~= "icon" and (isAFK or isDND) and (preformatedStatusText):format(isAFK and CHAT_FLAG_AFK or isDND and CHAT_FLAG_DND) or ""
-	if broadcast and broadcast ~= "" then
-		nbBroadcast = nbBroadcast + 1
-		bc = broadcasts[nbBroadcast]
-		bc.text:SetText(broadcast)
-		toast.bcIndex = nbBroadcast
-	else	toast.bcIndex = nil end
+    local presenceID, presenceName, battleTag, isBattleTagPresence, toonName, toonID, client, isOnline, lastOnline, isAFK, isDND, broadcast, notes, _, _, _, _, _, isFavorite = GetBNGetFriendInfo(index)
+    --toasts[index].isOnline = isOnline
+    --toasts[index].isFavorite = isFavorite
+    if not isOnline and not isFavorite then return nil end
+    local toast, bc, color = toasts[index]
+    local _, _, game, realm, realmID, faction, race, class, guild, zone, level, gameText, _, _, _, _, _, isGameAFK, isGameBusy, guid, wowProjectID = GetBNGetGameAccountInfo(toonID or 0)
+    local statusText = config.statusMode ~= "icon" and (isAFK or isDND) and (preformatedStatusText):format(isAFK and CHAT_FLAG_AFK or isDND and CHAT_FLAG_DND) or ""
+    if broadcast and broadcast ~= "" then
+        nbBroadcast = nbBroadcast + 1
+        bc = broadcasts[nbBroadcast]
+        bc.text:SetText(broadcast)
+        toast.bcIndex = nbBroadcast
+    else    toast.bcIndex = nil end
+
 
 	toast.presenceID = presenceID
 	toast.unit = BNet_GetValidatedCharacterName and BNet_GetValidatedCharacterName(toonName, battleTag, client) or toonName

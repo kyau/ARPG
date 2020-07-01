@@ -16,6 +16,10 @@ local AzeriteAPMaxes =    {350,400, 450, 500, 550, 600, 650, 700,1050,1580,2370,
 local AzeriteAPTotals = {0,350,750,1200,1700,2250,2850,3500,4200,5250,6830,9200,12760,18110,26110,36510,50010,67560,90360,120010,158610,208710,273860,358560,468660,611810,797910,1039860,1354410,1763310,2294860,2985860,3884160}
 local r, g, b, hex = GetItemQualityColor(6)
 
+local function isempty(s)
+	return s == nil or s == ''
+end
+
 local dataobj = LDB:NewDataObject("Azerite", {
 	type = "launcher",
 	label = "Azerite",
@@ -26,11 +30,15 @@ local dataobj = LDB:NewDataObject("Azerite", {
 	end,
 })
 function dataobj:OnTooltipShow()
-	self:AddLine("|T"..AzeriteIcon..":0|t Heart of Azeroth",r,g,b)
-	self:AddLine(" ")
-	self:AddDoubleLine("Level", AzeriteLevel, 1, 1, 1, 0, 0.5, 1)
-	self:AddDoubleLine("Item Level", AzeriteItemLevel, 1, 1, 1, 0, 0.5, 1)
-	self:AddDoubleLine("Artifact Power", string.format("%d/%d [%d%%]", AzeriteXP, AzeriteMaxXP, AzeriteXP/AzeriteMaxXP*100), 1, 1, 1, 0, 0.5, 1)
+	if isempty(AzeriteXP) then
+		self:AddLine("|T"..AzeriteIcon..":0|t Heart of Azeroth|r|cffaa0000 not found!",r,g,b)
+	else
+		self:AddLine("|T"..AzeriteIcon..":0|t Heart of Azeroth",r,g,b)
+		self:AddLine(" ")
+		self:AddDoubleLine("Level", AzeriteLevel, 1, 1, 1, 0, 0.5, 1)
+		self:AddDoubleLine("Item Level", AzeriteItemLevel, 1, 1, 1, 0, 0.5, 1)
+		self:AddDoubleLine("Artifact Power", string.format("%d/%d [%d%%]", AzeriteXP, AzeriteMaxXP, AzeriteXP/AzeriteMaxXP*100), 1, 1, 1, 0, 0.5, 1)
+	end
 end
 function dataobj:OnEnter()
 	GameTooltip:SetOwner(self, "ANCHOR_NONE")

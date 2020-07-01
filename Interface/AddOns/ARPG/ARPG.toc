@@ -1,4 +1,4 @@
-## Interface: 80000
+## Interface: 80300
 ## X-Min-Interface: 80000
 ## Title: |cffff69b4ARPG|r|cffefefef UI:|r Core
 ## Title-zhCN:|cffff69b4ARPG|r|cffefefef Required:|r 核心

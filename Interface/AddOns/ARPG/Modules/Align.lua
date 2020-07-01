@@ -8,8 +8,13 @@ local ARPG = namespace.ARPG or ARPG
 -- align (for ui setup)
 local blank = {bgFile="interface\\buttons\\white8x8"}
 local index = GetCurrentResolution()
-local resolution = select(index, GetScreenResolutions())
-local x,y = strsplit("x", resolution)
+if index == 0 then
+	local x = 2560
+	local y = 1080
+else
+	local resolution = select(index, GetScreenResolutions())
+	local x,y = strsplit("x", resolution)
+end
 local sWidth, sHeight, space
 local linesR = {}
 local linesL = {}

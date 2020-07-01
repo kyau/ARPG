@@ -31,7 +31,8 @@ end
 function f:OnEvent(event)
 	if event == "PLAYER_LOGIN" then
 		self.model:SetUnit("player")
-		self.model:SetRotation(math.rad(-110))
+		--self.model:SetRotation(math.rad(-110))
+		self.model:SetRotation(math.rad(-15))
 		self.galaxy:SetDisplayInfo(67918)
 		self.galaxy:SetCamDistanceScale(2.2)
 		--self.galaxy:SetRotation(math.rad(180))

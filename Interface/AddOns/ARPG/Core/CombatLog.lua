@@ -63,6 +63,10 @@ end
 
 --local function ARPG_InterruptAnnounce(timestamp, combatEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24, arg25)
 local function ARPG_InterruptAnnounce()
+	local _, instanceType, _, _, _, _, _, _, _, _ = GetInstanceInfo()
+	if instanceType == "none" then
+		return;
+	end
 	local timestamp, combatEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId, spellName, spellSchool, extraSpellId, extraSpellName, extraSchool = CombatLogGetCurrentEventInfo()
 	if(combatEvent == "SPELL_INTERRUPT" and sourceName and sourceName == UnitName("player")) then
 		--if you only whant to announce in a raid, and VBM_ZONE is not set, return

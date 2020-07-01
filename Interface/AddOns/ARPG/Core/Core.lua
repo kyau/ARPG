@@ -11,6 +11,7 @@ if not namespace.ARPG then
 	namespace.ARPG = ARPG
 end
 local ARPG = namespace.ARPG or ARPG
+
 --setup default config
 local DefaultConfig = {
 	FeastRepairAlert = true,
@@ -22,12 +23,27 @@ local DefaultConfig = {
 }
 ARPG_CONFIG = ARPG_CONFIG or DefaultConfig
 
+--functions
+function ARPG_CurrentRealm()
+	local realmName = GetRealmName()
+	local normalizedRealmName = GetNormalizedRealmName()
+	print("|cffF1D329Current Realm:|r |cff3DD341"..realmName.."|r")
+	local connectedRealms = GetAutoCompleteRealms()
+	tDeleteItem(connectedRealms, normalizedRealmName)
+	if connectedRealms then
+		for i=1, #connectedRealms do
+			print("|cffF1D329Connected Realm:|r |cff3DD341"..connectedRealms[i].."|r")
+		end
+	end
+end
+
 --event functions
 local function ARPG_Events_ADDON_FULLY_LOADED()
 	local version, build, bdate, toc = GetBuildInfo()
 	--print("|TInterface\\AddOns\\ARPG\\Media\\Logo.tga:32:128:0:0|t")
 	print("|cffff69b4ARPG:|r "..ARPG.version.." — ".."|cffffc700WoW:|r v"..version.."-"..build.." ("..bdate..") — |cffffc700Interface:|r "..toc)
 	print(" ")
+	ARPG_CurrentRealm()
 end
 
 function ARPG_Events_ADDON_LOADED(self, event, args, addon, ...)

@@ -21,8 +21,8 @@ cfg.textures = {
 	outer_shadow = "Interface\\AddOns\\"..addon.."\\Media\\Textures\\ActionButton\\outer_shadow",
 }
 cfg.background = {
-	showbg = false, --show an background image?
-	showshadow = false, --show an outer shadow?
+	showbg = true, --show an background image?
+	showshadow = true, --show an outer shadow?
 	useflatbackground = false, --true uses plain flat color instead
 	backgroundcolor = { r = 0.2, g = 0.2, b = 0.2, a = 0.3},
 	shadowcolor = { r = 0, g = 0, b = 0, a = 0.9},

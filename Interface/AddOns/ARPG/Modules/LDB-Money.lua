@@ -107,6 +107,9 @@ local function GetMoneyText(money, mode)
 end
 --]]
 
+local function isempty(s)
+	return s == nil or s == ''
+end
 
 block.OnEnter = function(self)
 	CloseDropDownMenus()
@@ -120,10 +123,12 @@ block.OnEnter = function(self)
 	local mode = config.tipMode
 	tip:AddDoubleLine( "Session",	GetMoneyText( total	   - session, mode ) )
 	tip:AddDoubleLine( "Today",	GetMoneyText( total	   - days[today], mode ) )
-	tip:AddDoubleLine( "Yesterday",	GetMoneyText( days[today]  - days[today-1], mode ) )
+	if not isempty(days[today-1]) then
+		tip:AddDoubleLine( "Yesterday",	GetMoneyText( days[today]  - days[today-1], mode ) )
+	end
 	if config.calendar then
 		tip:AddDoubleLine( "This Week", GetMoneyText( total - days[today-d.wday+2], mode ) )
-	else
+	elseif not isempty(days[today-6]) then
 		tip:AddDoubleLine( "Last 7 days", GetMoneyText( total - days[today-6], mode ) )
 	end
 	if days[today-29] then

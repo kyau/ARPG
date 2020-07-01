@@ -9,6 +9,10 @@ DominosDB = {
 	},
 	["profileKeys"] = {
 	},
+	["global"] = {
+		["configVersion"] = 1,
+		["addonVersion"] = "8.3.6",
+	},
 	["profiles"] = {
 		["Default"] = {
 			["frames"] = {
@@ -21,8 +25,16 @@ DominosDB = {
 					["showstates"] = "",
 					["spacing"] = 3,
 					["padH"] = 2,
+					["padW"] = 2,
 					["numButtons"] = 9,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+							["page2"] = 1,
+							["page5"] = 4,
+							["page4"] = 3,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
 						["WARRIOR"] = {
 							["page2"] = 1,
 							["page5"] = 4,
@@ -46,6 +58,41 @@ DominosDB = {
 							["page3"] = 2,
 							["page6"] = 5,
 						},
+						["PRIEST"] = {
+							["page2"] = 1,
+							["page5"] = 4,
+							["page4"] = 3,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
+						["SHAMAN"] = {
+							["page2"] = 1,
+							["page5"] = 4,
+							["page4"] = 3,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
+						["WARLOCK"] = {
+							["page2"] = 1,
+							["page5"] = 4,
+							["page4"] = 3,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
+						["DEMONHUNTER"] = {
+							["page2"] = 1,
+							["page5"] = 4,
+							["page4"] = 3,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
+						["PALADIN"] = {
+							["page2"] = 1,
+							["page5"] = 4,
+							["page4"] = 3,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
 						["DRUID"] = {
 							["bear"] = 8,
 							["tree"] = 7,
@@ -57,7 +104,14 @@ DominosDB = {
 							["page3"] = 2,
 							["page6"] = 5,
 						},
-						["PRIEST"] = {
+						["MONK"] = {
+							["page2"] = 1,
+							["page5"] = 4,
+							["page4"] = 3,
+							["page3"] = 2,
+							["page6"] = 5,
+						},
+						["HUNTER"] = {
 							["page2"] = 1,
 							["page5"] = 4,
 							["page4"] = 3,
@@ -65,7 +119,6 @@ DominosDB = {
 							["page6"] = 5,
 						},
 					},
-					["padW"] = 2,
 				}, -- [1]
 				{
 					["showInPetBattleUI"] = false,
@@ -76,20 +129,34 @@ DominosDB = {
 					["x"] = -345,
 					["spacing"] = 5,
 					["padH"] = 2,
-					["padW"] = 2,
+					["numButtons"] = 4,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["numButtons"] = 4,
+					["padW"] = 2,
 				}, -- [2]
 				{
 					["showInPetBattleUI"] = false,
@@ -100,20 +167,34 @@ DominosDB = {
 					["x"] = 345,
 					["spacing"] = 5,
 					["padH"] = 2,
-					["padW"] = 2,
+					["numButtons"] = 4,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["numButtons"] = 4,
+					["padW"] = 2,
 				}, -- [3]
 				{
 					["showInPetBattleUI"] = false,
@@ -122,46 +203,77 @@ DominosDB = {
 					["showInOverrideUI"] = false,
 					["y"] = 95,
 					["x"] = 180,
-					["padW"] = 2,
+					["fadeAlpha"] = 0.2,
 					["spacing"] = 4,
 					["padH"] = 2,
+					["numButtons"] = 2,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["numButtons"] = 2,
-					["fadeAlpha"] = 0.2,
+					["padW"] = 2,
 				}, -- [4]
 				{
 					["showInPetBattleUI"] = false,
-					["point"] = "BOTTOM",
+					["point"] = "RIGHT",
+					["scale"] = 0.8,
 					["showInOverrideUI"] = false,
 					["hidden"] = true,
+					["y"] = 69,
+					["fadeAlpha"] = 0,
 					["padW"] = 2,
 					["spacing"] = 4,
 					["padH"] = 2,
-					["y"] = 160,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["numButtons"] = 12,
+					["numButtons"] = 4,
+					["x"] = -458,
 				}, -- [5]
 				{
 					["showInPetBattleUI"] = false,
@@ -170,20 +282,34 @@ DominosDB = {
 					["padW"] = 2,
 					["spacing"] = 4,
 					["padH"] = 2,
-					["y"] = -164,
+					["numButtons"] = 12,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["numButtons"] = 12,
+					["y"] = -164,
 				}, -- [6]
 				{
 					["showInPetBattleUI"] = false,
@@ -192,20 +318,34 @@ DominosDB = {
 					["padW"] = 2,
 					["spacing"] = 4,
 					["padH"] = 2,
-					["y"] = -124,
+					["numButtons"] = 12,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["numButtons"] = 12,
+					["y"] = -124,
 				}, -- [7]
 				{
 					["showInPetBattleUI"] = false,
@@ -214,23 +354,37 @@ DominosDB = {
 					["showInOverrideUI"] = false,
 					["padW"] = 2,
 					["x"] = -177,
-					["y"] = 94,
+					["fadeAlpha"] = 0.2,
 					["spacing"] = 4,
 					["padH"] = 2,
-					["numButtons"] = 2,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["fadeAlpha"] = 0.2,
+					["numButtons"] = 2,
+					["y"] = 94,
 				}, -- [8]
 				{
 					["showInPetBattleUI"] = false,
@@ -239,87 +393,116 @@ DominosDB = {
 					["padW"] = 2,
 					["spacing"] = 4,
 					["padH"] = 2,
-					["y"] = -44,
+					["numButtons"] = 12,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["numButtons"] = 12,
+					["y"] = -44,
 				}, -- [9]
 				{
 					["showInPetBattleUI"] = false,
 					["showInOverrideUI"] = false,
 					["hidden"] = true,
 					["padW"] = 2,
+					["x"] = 2,
 					["spacing"] = 4,
 					["padH"] = 2,
-					["y"] = -4,
+					["numButtons"] = 12,
 					["pages"] = {
+						["DEATHKNIGHT"] = {
+						},
 						["WARRIOR"] = {
 						},
 						["ROGUE"] = {
 						},
 						["MAGE"] = {
 						},
-						["DRUID"] = {
-						},
 						["PRIEST"] = {
 						},
+						["SHAMAN"] = {
+						},
+						["WARLOCK"] = {
+						},
+						["DEMONHUNTER"] = {
+						},
+						["PALADIN"] = {
+						},
+						["DRUID"] = {
+						},
+						["MONK"] = {
+						},
+						["HUNTER"] = {
+						},
 					},
-					["numButtons"] = 12,
+					["y"] = 47,
 				}, -- [10]
 				["artifact"] = {
 					["showInPetBattleUI"] = false,
-					["columns"] = 20,
 					["point"] = "TOP",
-					["numButtons"] = 20,
-					["padW"] = 2,
-					["lockMode"] = true,
-					["padH"] = 2,
-					["font"] = "Friz Quadrata TT",
+					["columns"] = 20,
+					["alwaysShowText"] = true,
 					["y"] = -16,
-					["x"] = 0,
-					["showInOverrideUI"] = false,
-					["spacing"] = 1,
+					["lockMode"] = true,
 					["display"] = {
 						["value"] = true,
-						["bonus"] = true,
-						["max"] = true,
 						["label"] = true,
+						["max"] = true,
+						["bonus"] = true,
 					},
+					["x"] = 0,
+					["padW"] = 2,
+					["font"] = "Friz Quadrata TT",
+					["showInOverrideUI"] = false,
+					["spacing"] = 1,
+					["padH"] = 2,
 					["mode"] = "artifact",
-					["alwaysShowText"] = true,
+					["numButtons"] = 20,
 					["texture"] = "blizzard",
 				},
 				["exp"] = {
 					["showInPetBattleUI"] = false,
-					["columns"] = 20,
 					["point"] = "TOP",
-					["numButtons"] = 20,
-					["padW"] = 2,
-					["lockMode"] = true,
-					["padH"] = 2,
-					["font"] = "Friz Quadrata TT",
+					["columns"] = 20,
+					["alwaysShowText"] = true,
 					["y"] = 0,
-					["x"] = 0,
-					["showInOverrideUI"] = false,
-					["spacing"] = 1,
+					["lockMode"] = true,
 					["display"] = {
 						["value"] = true,
-						["bonus"] = true,
-						["max"] = true,
 						["label"] = true,
+						["max"] = true,
+						["bonus"] = true,
 					},
+					["x"] = 0,
+					["padW"] = 2,
+					["font"] = "Friz Quadrata TT",
+					["showInOverrideUI"] = false,
+					["spacing"] = 1,
+					["padH"] = 2,
 					["mode"] = "xp",
-					["alwaysShowText"] = true,
+					["numButtons"] = 20,
 					["texture"] = "blizzard",
 				},
 				["encounter"] = {
@@ -329,16 +512,18 @@ DominosDB = {
 				},
 				["bags"] = {
 					["showInPetBattleUI"] = false,
-					["point"] = "BOTTOMRIGHT",
-					["spacing"] = 2,
 					["showInOverrideUI"] = false,
 					["hidden"] = true,
 				},
 				["pet"] = {
-					["y"] = -32,
-					["spacing"] = 6,
-					["showInOverrideUI"] = false,
 					["showInPetBattleUI"] = false,
+					["point"] = "BOTTOMLEFT",
+					["scale"] = 0.8,
+					["showInOverrideUI"] = false,
+					["y"] = 134,
+					["x"] = 212,
+					["spacing"] = 2,
+					["fadeAlpha"] = 0,
 				},
 				["alerts"] = {
 					["showInPetBattleUI"] = true,
@@ -355,11 +540,18 @@ DominosDB = {
 					["showInOverrideUI"] = false,
 					["y"] = -17,
 				},
-				["class"] = {
-					["showInPetBattleUI"] = false,
-					["showInOverrideUI"] = false,
-					["point"] = "CENTER",
+				["roll"] = {
+					["showInPetBattleUI"] = true,
+					["point"] = "LEFT",
 					["spacing"] = 2,
+					["showInOverrideUI"] = true,
+					["columns"] = 1,
+				},
+				["extra"] = {
+					["y"] = 24,
+					["x"] = -365,
+					["showInOverrideUI"] = false,
+					["showInPetBattleUI"] = false,
 				},
 				["cast"] = {
 					["showInPetBattleUI"] = false,
@@ -369,14 +561,14 @@ DominosDB = {
 					["y"] = 30,
 					["h"] = 32,
 					["latencyPadding"] = 0,
+					["font"] = "Friz Quadrata TT",
 					["display"] = {
-						["icon"] = false,
 						["border"] = true,
 						["time"] = true,
+						["icon"] = false,
 					},
-					["padH"] = 1,
 					["padW"] = 1,
-					["font"] = "Friz Quadrata TT",
+					["padH"] = 1,
 					["texture"] = "blizzard",
 				},
 				["vehicle"] = {
@@ -388,18 +580,21 @@ DominosDB = {
 					["showInOverrideUI"] = false,
 					["y"] = 106,
 				},
-				["extra"] = {
-					["y"] = 24,
-					["x"] = -365,
-					["showInOverrideUI"] = false,
+				["class"] = {
 					["showInPetBattleUI"] = false,
-				},
-				["roll"] = {
-					["showInPetBattleUI"] = true,
-					["point"] = "LEFT",
+					["x"] = -347,
+					["point"] = "BOTTOMRIGHT",
 					["spacing"] = 2,
+					["scale"] = 1,
+					["showInOverrideUI"] = false,
+					["fadeAlpha"] = 0.1,
+				},
+				["zone"] = {
+					["y"] = 160,
+					["x"] = 0,
+					["point"] = "BOTTOM",
 					["showInOverrideUI"] = true,
-					["columns"] = 1,
+					["showInPetBattleUI"] = true,
 				},
 			},
 			["minimap"] = {
@@ -407,8 +602,7 @@ DominosDB = {
 			},
 			["showMacroText"] = false,
 			["sticky"] = false,
-			["showBindingText"] = false,
+			["showgrid"] = false,
 		},
 	},
 }
-DominosVersion = "8.0.7"

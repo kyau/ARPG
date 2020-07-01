@@ -1,4 +1,4 @@
-# Action RPG UI ![badge](https://img.shields.io/badge/coded_by-monkeys-ff69b4.svg?longCache=true&style=popout) ![badge](https://img.shields.io/badge/interface-80000-0099ff.svg?longCache=true&style=popout)  ![badge](https://img.shields.io/badge/license-LGPLv3.0-lightgrey.svg?longCache=true&style=popout)
+# Action RPG UI ![badge](https://img.shields.io/badge/coded_by-monkeys-ff69b4.svg?longCache=true&style=popout) ![badge](https://img.shields.io/badge/interface-80300-0099ff.svg?longCache=true&style=popout)  ![badge](https://img.shields.io/badge/license-LGPLv3.0-lightgrey.svg?longCache=true&style=popout)
 
 Action RPG UI was created with art from Diablo 3 and is heavily based on [RothUI](https://www.wowinterface.com/downloads/info9175-RothUIDiablo.html) with additional inspirations from Path of Exile.
 
@@ -38,6 +38,8 @@ While not required, the following addons are also heavily recommended to complet
 * [Rematch](https://wow.curseforge.com/projects/rematch)
 * [RENovate](https://wow.curseforge.com/projects/renovate-mission-table-extension)
 * [SimulationCraft](https://wow.curseforge.com/projects/simulationcraft)
+
+**NOTE: Use Default profiles!**
 
 ## Attribution / Credits
 Many AddOns have helped me in the development of the ARPG UI. Many AddOns have also been merged/integrated with ARPG. I have tried to give credit for all the borrowed/integrated code here. If you find something that is not in the list that needs to be, please let me know!
